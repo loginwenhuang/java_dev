@@ -13,5 +13,7 @@ public class Student {
     private Integer id;
     private String name;
     private String sex;
-    private Date birthday;
+    private String phone;
+
+    private ClassInfo classInfo;
 }
