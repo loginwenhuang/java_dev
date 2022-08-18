@@ -1,0 +1,8 @@
+com\wen\annotation\PrimaryKey.class
+com\wen\test\Test.class
+com\wen\annotation\Table.class
+com\wen\orm\impl\GenericDaoImpl.class
+com\wen\orm\IGenericDao.class
+com\wen\entity\Student.class
+com\wen\annotation\ColumnInfo.class
+com\wen\util\BaseDao.class

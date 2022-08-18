@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.BookMapper1">
+    <select id="bookList" resultType="com.entity.Book">
+        select book_id,book_name,author,price,press,pubDate from tb_book
+    </select>
+
+    <select id="getByNameAndPubDate" resultType="com.entity.Book">
+        select * from tb_book
+        where book_name = #{param1} and pubDate = #{param2}
+    </select>
+
+    <select id="getByNameAndPubDate2" resultType="com.entity.Book">
+        select * from tb_book
+        where book_name = #{bookName} and pubDate = #{pubDate}
+    </select>
+    <select id="getByMap" resultType="com.entity.Book">
+        select * from tb_book
+        where book_name = #{bookName} and pubDate = #{pubDate}
+    </select>
+
+    <select id="getByBookNameLike" resultType="com.entity.Book">
+        select * from tb_book
+        where book_name like concat("%",#{bookName},"%");
+    </select>
+
+    <insert id="insert" parameterType="com.entity.Book">
+        insert into tb_book(book_name,author,price,press,pubDate)
+        values (#{bookName},#{author},#{price},#{press},#{pubDate})
+    </insert>
+
+    <update id="update" parameterType="com.entity.Book">
+        update tb_book
+        set book_name = #{bookName},author = #{author},
+            price = #{price},press = #{press},
+            pubDate = #{pubDate}
+        where book_id = #{bookId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from tb_book where book_id = #{bookId}
+    </delete>
+</mapper>

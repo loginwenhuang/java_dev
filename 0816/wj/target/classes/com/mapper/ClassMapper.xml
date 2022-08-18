@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.ClassMapper">
+    <resultMap id="classMap" type="classInfo" autoMapping="true">
+        <id property="classId" column="classId"/>
+        <collection property="studentList" ofType="studentInfo" autoMapping="true">
+
+        </collection>
+    </resultMap>
+    <select id="classList" resultMap="classMap">
+        select studentId,name,sex,birthday,province,s.classId,
+               c.classId,c.className
+        from studentInfo s join classInfo c
+        on s.classId = c.classId
+    </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.StudentMapper">
+    <resultMap id="studentMap" type="StudentInfo" autoMapping="true">
+        <association property="classInfo" javaType="ClassInfo" autoMapping="true"/>
+    </resultMap>
+    <select id="studentList" resultMap="studentMap">
+        select studentId,name,sex,birthday,province,s.classId,
+               c.classId,c.className
+        from studentInfo s join classInfo c
+        on s.classId = c.classId
+    </select>
+
+    <select id="studentList1" resultMap="studentMap">
+        select studentId,name,sex,birthday,province,s.classId,
+               c.classId,c.className
+        from studentInfo s join classInfo c
+        on s.classId = c.classId
+        <where>
+            <if test="studentId!=null and studentId!=''">
+                and studentId &gt; #{studentId}
+            </if>
+            <if test="classId!=null and classId!= ''">
+                and s.classId = #{classId}
+            </if>
+        </where>
+    </select>
+
+    <select id="studentList2" resultMap="studentMap">
+        select studentId,name,sex,birthday,province,s.classId,
+        c.classId,c.className
+        from studentInfo s join classInfo c
+        on s.classId = c.classId
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="startId!=null and startId != ''">
+                and studentId &gt; #{startId}
+            </if>
+            <if test="endId != null and endId !='' ">
+                and studentId &lt;= #{endId}
+            </if>
+        </trim>
+    </select>
+</mapper>

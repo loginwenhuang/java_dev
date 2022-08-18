@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.CategoryMapper">
+    <resultMap id="categoryMap" type="com.entity.Category" autoMapping="true">
+        <id column="category_id" property="categoryId"/>
+        <collection property="goodsList"  ofType="Goods" autoMapping="true">
+        </collection>
+    </resultMap>
+
+    <sql id="colSql" >
+        goods_id,goods_name,price,produce_date,address,g.category_id,
+        c.category_id,c.category_name
+    </sql>
+
+    <select id="categoryList" resultMap="categoryMap">
+        select
+        <include refid="colSql"></include>
+        from goods g join category c
+        on g.category_id = c.category_id
+    </select>
+
+    <select id="category" resultType="category">
+        select category_id,category_name
+        from category
+        where category_id = #{categroy_id}
+    </select>
+</mapper>

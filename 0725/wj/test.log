@@ -1,0 +1,27 @@
+2022-07-25 11:57:54 com.wen.test.MyTest.main(MyTest.java:20)  第一个数:10
+2022-07-25 11:57:59 com.wen.test.MyTest.main(MyTest.java:23)  第二个数:2
+2022-07-25 11:57:59 com.wen.test.MyTest.main(MyTest.java:27)  运算结果:5
+2022-07-25 11:58:50 com.wen.test.MyTest.main(MyTest.java:17)  运算开始
+2022-07-25 11:58:50 com.wen.test.MyTest.main(MyTest.java:18)  准备输入第一个数:
+2022-07-25 11:58:53 com.wen.test.MyTest.main(MyTest.java:20)  第一个数:10
+2022-07-25 11:58:53 com.wen.test.MyTest.main(MyTest.java:21)  准备输入第二个数:
+2022-07-25 11:58:55 com.wen.test.MyTest.main(MyTest.java:23)  第二个数:0
+2022-07-25 11:58:55 com.wen.test.MyTest.main(MyTest.java:25)  准备运算
+2022-07-25 11:58:55 com.wen.test.MyTest.main(MyTest.java:30)  发生了运算错误:/ by zero
+2022-07-25 12:01:05 com.wen.test.MyTest.main(MyTest.java:17) main MyTest.java DEBUG 运算开始
+2022-07-25 12:01:05 com.wen.test.MyTest.main(MyTest.java:18) main MyTest.java DEBUG 准备输入第一个数:
+2022-07-25 12:01:10 com.wen.test.MyTest.main(MyTest.java:20) main MyTest.java INFO 第一个数:10
+2022-07-25 12:01:10 com.wen.test.MyTest.main(MyTest.java:21) main MyTest.java DEBUG 准备输入第二个数:
+2022-07-25 12:01:11 com.wen.test.MyTest.main(MyTest.java:33) main MyTest.java INFO 发生了输入错误:null
+2022-07-25 12:01:48 com.wen.test.MyTest.main(MyTest.java:17) main MyTest.java DEBUG 运算开始
+2022-07-25 12:01:48 com.wen.test.MyTest.main(MyTest.java:18) main MyTest.java DEBUG 准备输入第一个数:
+2022-07-25 12:01:50 com.wen.test.MyTest.main(MyTest.java:20) main MyTest.java INFO 第一个数:10
+2022-07-25 12:01:50 com.wen.test.MyTest.main(MyTest.java:21) main MyTest.java DEBUG 准备输入第二个数:
+2022-07-25 12:01:51 com.wen.test.MyTest.main(MyTest.java:33) main MyTest.java INFO 发生了输入错误:null
+2022-07-25 12:02:08 com.wen.test.MyTest.main(MyTest.java:17) main MyTest.java DEBUG 运算开始
+2022-07-25 12:02:08 com.wen.test.MyTest.main(MyTest.java:18) main MyTest.java DEBUG 准备输入第一个数:
+2022-07-25 12:02:10 com.wen.test.MyTest.main(MyTest.java:20) main MyTest.java INFO 第一个数:10
+2022-07-25 12:02:10 com.wen.test.MyTest.main(MyTest.java:21) main MyTest.java DEBUG 准备输入第二个数:
+2022-07-25 12:02:11 com.wen.test.MyTest.main(MyTest.java:23) main MyTest.java INFO 第二个数:0
+2022-07-25 12:02:11 com.wen.test.MyTest.main(MyTest.java:25) main MyTest.java DEBUG 准备运算
+2022-07-25 12:02:11 com.wen.test.MyTest.main(MyTest.java:30) main MyTest.java INFO 发生了运算错误:/ by zero
