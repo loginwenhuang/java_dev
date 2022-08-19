@@ -25,24 +25,19 @@
         <package name="com.entity"/>
     </typeAliases>
     <plugins>
-
-<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <property name="offsetAsPageNum" value="true"/>
-            &lt;!&ndash;配置数据库方言 4.0版本以后不用写&ndash;&gt;
-            &lt;!&ndash;<property name="helperDialect" value="mysql"/>&ndash;&gt;
-            &lt;!&ndash;是否做count查询&ndash;&gt;
+            <!--配置数据库方言 4.0版本以后不用写-->
+            <!--<property name="helperDialect" value="mysql"/>-->
+            <!--是否做count查询-->
             <property name="rowBoundsWithCount" value="true"/>
-            &lt;!&ndash;合理化分页&ndash;&gt;
+            <!--合理化分页-->
             <property name="reasonable" value="true"/>
-        </plugin>-->
-        <!--<plugin interceptor="com.interceptor.MyPageInterceptor">
+        </plugin>
+<!--        <plugin interceptor="com.interceptor.MyInterceptor">
             <property name="start" value="1"/>
             <property name="end" value="3"/>
         </plugin>-->
-        <plugin interceptor="com.interceptor.MyPageInterceptor">
-            <property name="start" value="0"/>
-            <property name="end" value="3"/>
-        </plugin>
     </plugins>
     <environments default="development">
         <environment id="development">

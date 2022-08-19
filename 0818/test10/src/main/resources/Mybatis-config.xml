@@ -25,7 +25,7 @@
         <package name="com.entity"/>
     </typeAliases>
     <plugins>
-        
+
 <!--        <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <property name="offsetAsPageNum" value="true"/>
             &lt;!&ndash;配置数据库方言 4.0版本以后不用写&ndash;&gt;
@@ -39,7 +39,7 @@
             <property name="start" value="1"/>
             <property name="end" value="3"/>
         </plugin>-->
-        <plugin interceptor="com.interceptor.NewInterceptor">
+        <plugin interceptor="com.interceptor.MyPageInterceptor">
             <property name="start" value="0"/>
             <property name="end" value="3"/>
         </plugin>
