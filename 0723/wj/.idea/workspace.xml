@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dd4e5988-5357-4322-bff3-8d4429a122dd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/interceptor/MyInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/mapper/StudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/java/com/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/java/com/mapper/GoodsMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0818/test10/src/test/java/com/test/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../0818/test10/src/test/java/com/test/MyTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2CK0yQyid3e1AnGZRmMfq4UU3BO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../0722" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Desktop\Java_dev\0723\wj\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Desktop\Java_dev\0723\wj\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.wen.app.App" />
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wen.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="users.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="71585014-853b-4a44-817a-26aadf9de4cf/schema/library_management_system/table/users.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <configuration name="MyTest.myTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wen.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wen.test" />
+      <option name="MAIN_CLASS_NAME" value="com.wen.test.MyTest" />
+      <option name="METHOD_NAME" value="myTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wen.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wen.test" />
+      <option name="MAIN_CLASS_NAME" value="com.wen.test.MyTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDAO.getByUserName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wen.dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wen.dao.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.wen.dao.impl.UserDAO" />
+      <option name="METHOD_NAME" value="getByUserName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="Database Script.users.sql" />
+        <item itemvalue="JUnit.UserDAO.getByUserName" />
+        <item itemvalue="JUnit.MyTest.myTest1" />
+        <item itemvalue="JUnit.MyTest.test2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd4e5988-5357-4322-bff3-8d4429a122dd" name="Default Changelist" comment="" />
+      <created>1658536225666</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658536225666</updated>
+      <workItem from="1658536226894" duration="8070000" />
+      <workItem from="1658558739305" duration="11149000" />
+      <workItem from="1658647134639" duration="9889000" />
+      <workItem from="1658671194153" duration="106000" />
+      <workItem from="1658671357592" duration="10000" />
+      <workItem from="1658671456015" duration="54000" />
+      <workItem from="1658707090027" duration="3985000" />
+      <workItem from="1658721280003" duration="2000" />
+      <workItem from="1660876079203" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

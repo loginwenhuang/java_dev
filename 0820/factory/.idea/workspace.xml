@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="65e876f2-5253-410e-a50e-6b8e06b28429" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/java/com/wen/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/resources/spring-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/Factory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/PetFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/StudentFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/java/com/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/java/com/mapper/IGoodsDaoCo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/entity/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/entity/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/entity/God.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/factory/FactoryInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/factory/PetFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/java/com/factory/StaticFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/resources/spring-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/resources/spring-2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/main/resources/spring-3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wj/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest2.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring" />
+        <option value="spring-beans.schema" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\repository" />
+        <option name="mavenHome" value="C:\maven\apache-maven-3.6.2" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.6.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Dbvu5WvKI65K3pGtQ0yjJRnHZu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager" selected="JUnit.MyTest.BeanFactoryTest">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.BeanFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="factory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="BeanFactoryTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="factory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="Test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.facTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="factory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="facTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.singleStu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="factory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="singleStu" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.stu2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="factory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="stu2Test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MyTest.BeanFactoryTest" />
+        <item itemvalue="JUnit.MyTest.Test" />
+        <item itemvalue="JUnit.MyTest.singleStu" />
+        <item itemvalue="JUnit.MyTest.facTest" />
+        <item itemvalue="JUnit.MyTest.stu2Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65e876f2-5253-410e-a50e-6b8e06b28429" name="Default Changelist" comment="" />
+      <created>1660980819738</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660980819738</updated>
+      <workItem from="1660980821149" duration="6716000" />
+      <workItem from="1661083344934" duration="4069000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

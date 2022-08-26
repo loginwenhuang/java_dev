@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>题目管理</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+
+
+<!--添加功能的form-->
+<input hidden  id="createBy" name="createBy">
+<input hidden id="updateBy" name="updateBy">
+<form class="layui-form" action="" id="insertQuestionnaireDetailsForm"
+      style="display: none;margin-right: 40px;margin-top: 20px" lay-filter="insertQuestionnaireDetailsForm">
+    <!--设置当前调查问卷的id值-->
+    <input type="hidden" th:value="${questionnaireId}" name="questionnaireId">
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目</label>
+        <div class="layui-input-block">
+            <input type="text" name="detailsTitle"  autocomplete="off" placeholder="请输入题目"
+                   class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目序号</label>
+        <div class="layui-input-block">
+            <input type="number" name="detailsOrder"  autocomplete="off" placeholder="请输入题目序号"
+                   class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item" >
+        <label class="layui-form-label">题目类型</label>
+        <div class="layui-input-block">
+            <input type="radio" name="detailsType" value="0" title="问答题" checked lay-filter="addDetailsType">
+            <input type="radio" name="detailsType" value="1" title="单选题" lay-filter="addDetailsType">
+            <input type="radio" name="detailsType" value="2" title="复选题" lay-filter="addDetailsType">
+        </div>
+    </div>
+    <div class="addQuestionItems" style="display: none">
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项1</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionA"  autocomplete="off" placeholder="选项1"
+                       class="layui-input" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项2</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionB"  autocomplete="off" placeholder="选项2"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项3</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionC"  autocomplete="off" placeholder="选项3"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项4</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionD"  autocomplete="off" placeholder="选项4"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit id="insertQuestionnaireDetailsButton" lay-filter="insertQuestionnaireDetailsFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<form class="layui-form" action="" id="updateQuestionnaireDetailsForm"
+      lay-filter="updateQuestionnaireDetailsForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <input type="hidden" name="id"/>
+    <!--设置当前调查问卷的id值-->
+    <input type="hidden" th:value="${questionnaireId}" name="questionnaireId">
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目</label>
+        <div class="layui-input-block">
+            <input type="text" name="detailsTitle"  autocomplete="off" placeholder="请输入题目"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目序号</label>
+        <div class="layui-input-block">
+            <input type="number" name="detailsOrder"  autocomplete="off" placeholder="请输入题目序号"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">题目类型</label>
+        <div class="layui-input-block">
+            <input type="radio" name="detailsType" value="0" title="问答题" lay-filter="updateDetailsType">
+            <input type="radio" name="detailsType" value="1" title="单选题" lay-filter="updateDetailsType">
+            <input type="radio" name="detailsType" value="2" title="复选题" lay-filter="updateDetailsType">
+        </div>
+    </div>
+    <div class="updateQuestionItems" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项1</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionA"  autocomplete="off" placeholder="选项1"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项2</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionB"  autocomplete="off" placeholder="选项2"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项3</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionC"  autocomplete="off" placeholder="选项3"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选项4</label>
+            <div class="layui-input-block">
+                <input type="text" name="optionD"  autocomplete="off" placeholder="选项4"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit id="updateQuestionnaireDetailsButton" lay-filter="updateQuestionnaireDetailsFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<table id="tabQuestionnaireDetails" lay-filter="tabQuestionnaireDetailsFilter" ></table>
+</body>
+<!--顶部工具栏-->
+<script type="text/html" id="questionnaireDetailsToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn" lay-event="backToQuestionnaire">
+            <i class="layui-icon layui-icon-return"></i>返回
+        </button>
+        <button class="layui-btn layui-btn-normal" lay-event="addQuestionnaireDetails">
+            <i class="layui-icon layui-icon-add-1"></i>添加
+        </button>
+        <button class="layui-btn layui-btn-warm" lay-event="previewQuestionnaire">
+            <i class="layui-icon layui-icon-layer"></i>预览
+        </button>
+    </div>
+</script>
+<!--实现题目操作功能按钮-->
+<script type="text/html" id="questionnaireDetailsBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" >删除</a>
+</script>
+<!--状态按钮-->
+
+<script th:inline="javascript">
+    var questionnaireId = [[${questionnaireId}]];
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+        let questionnaireDetailsTable = table.render({
+            elem: '#tabQuestionnaireDetails'
+            , url: '/questionnaireDetails/selectAll' //数据接口
+            , where:{questionnaireId:questionnaireId}
+            , height: 500
+            , toolbar: '#questionnaireDetailsToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'questionnaireDetailsTable'
+            , page: true
+            , page:1
+            , limit: 5
+            , limits:[5,10,15,20]
+            , cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'id',title:'编号',width:50,hide:true}
+                    , {field: 'questionnaireId',title:'问卷编号',width:50,hide:true}
+                    , {field: 'detailsOrder',title:'序号',width:80}
+                    , {field: 'detailsTitle', title: '题目标题',width:250 }
+                    , {field: 'detailsType', title: '题目类型', width: 100, templet:function(d){
+                        return d.detailsType=='0'?"问答题":d.detailsType=='1'?"单选题":"复选题";
+                    }}
+                    , {field: 'optionA', title: '选项1',width:150 }
+                    , {field: 'optionB', title: '选项2',width:150 }
+                    , {field: 'optionC', title: '选项3',width:150 }
+                    , {field: 'optionD', title: '选项4',width:150 }
+                    , {field: 'createBy', title: '创建人', width: 100, sort: true}
+                    , {field: 'createTime', title: '创建时间',width: 180, sort: true, templet: function (d) {
+                        if (!d.createTime){
+                            return "";
+                        }
+                        return d.createTime.replace(/\"/g, "");
+                    }}
+                    , {field: 'updateBy', title: '修改人', width: 100}
+                    , {field: 'updateTime', title: '修改时间',width: 180, sort: true, templet: function (d) {
+                        if (!d.updateTime){
+                            return "";
+                        }
+                        return d.updateTime.replace(/\"/g, "");
+                    }}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#questionnaireDetailsBar', width: 150}
+                ]
+            ]
+        });
+        //监听行工具事件
+        table.on('tool(tabQuestionnaireDetailsFilter)', function (obj) {
+            let data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //删除数据库中的数据
+                    let idList = [];
+                    idList.push(data.id);
+                    $.ajax({
+                        url: "/questionnaireDetails/delete",
+                        type: "DELETE",
+                        dataType: "JSON",
+                        data: {idList: idList},
+                        success: function (ret) {
+                            if (ret.code == 0) {
+                                //刷新表格数据
+                                questionnaireDetailsTable.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
+                                layer.msg(ret.msg, {icon: 6});
+                            } else {
+                                layer.msg(ret.msg, {icon: 5});
+                            }
+                        }
+                    });
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                //$("#updateQuestionnaireDetailsForm [name='details_type']").val(data.details_type);
+                console.log(data);
+                form.val('updateQuestionnaireDetailsForm', data);
+                if(data.detailsType=='0'){
+                    $(".updateQuestionItems").hide();
+                }else{
+                    $(".updateQuestionItems").show();
+                }
+                layer.open({
+                    title: '编辑题目',
+                    type: 1,
+                    area: ['500px', '500px'],
+                    content: $("#updateQuestionnaireDetailsForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            }
+        });
+
+        //form表单实现更新功能
+        form.on('submit(updateQuestionnaireDetailsFilter)', function (data) {
+            console.log(data);
+            data.field.updateBy = $("#updateBy").val();
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaireDetails/update",
+                type: "PUT",
+                dataType: "JSON",
+                data: JSON.stringify(data.field),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        questionnaireDetailsTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(tabQuestionnaireDetailsFilter)', function (obj) {
+            let checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'addQuestionnaireDetails':
+                    document.getElementById("insertQuestionnaireDetailsForm").reset();
+                    $(".addQuestionItems").hide();
+                    layer.open({
+                        title: '添加问卷题目',
+                        type: 1,
+                        area: ['500px', '550px'],
+                        content: $("#insertQuestionnaireDetailsForm")
+                    });
+                    break;
+                case 'previewQuestionnaire':
+                    window.location.href='/questionnaire/toQuestionnairePreview/'+questionnaireId;
+                    break;
+                case 'backToQuestionnaire':
+                    window.location.href='/questionnaire/toQuestionnaire';
+                    break;
+
+            }
+        });
+
+        form.on('radio(addDetailsType)', function(data){
+            console.log(data.value); //被点击的radio的value值
+            // 切换选项，设置选项隐藏显示
+            if(data.value=='0'){
+                $(".addQuestionItems").hide();
+            }else{
+                $(".addQuestionItems").show();
+            }
+        });
+
+        form.on('radio(updateDetailsType)', function(data){
+
+            console.log(data.value); //被点击的radio的value值
+            // 切换选项，设置选项隐藏显示
+            if(data.value=='0'){
+                $(".updateQuestionItems").hide();
+            }else{
+                $(".updateQuestionItems").show();
+            }
+        });
+
+        //form表单实现添加功能
+        form.on('submit(insertQuestionnaireDetailsFilter)', function (data) {
+            data.field.createBy = $("#createBy").val();
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaireDetails/insert",
+                type: "POST",
+                dataType: "JSON",
+                data: JSON.stringify(data.field),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        questionnaireDetailsTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //
+    });
+</script>
+</html>

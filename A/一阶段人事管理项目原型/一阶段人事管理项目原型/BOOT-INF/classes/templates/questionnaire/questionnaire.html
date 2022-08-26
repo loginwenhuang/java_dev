@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>部门管理</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<!--添加功能的form-->
+<input hidden  id="createBy" name="createBy">
+<input hidden id="updateBy" name="updateBy">
+<form class="layui-form" action="" id="insertQuestionnaireForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">问卷标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title"  autocomplete="off" placeholder="请输入问卷标题"
+                   class="layui-input"  lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">记名/匿名</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked  name="anonymous" lay-skin="switch" lay-filter="switchAnonymous"
+                   lay-text="记名|匿名">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit id="insertQuestionnaireButton" lay-filter="insertQuestionnaireFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<!--复制问卷-->
+<form class="layui-form" action="" id="copyQuestionnaireForm"
+      lay-filter="copyQuestionnaireForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">问卷标题</label>
+        <input type="hidden" name="fromId" id="fromId"/>
+        <div class="layui-input-block">
+            <input type="text" name="title"  autocomplete="off" placeholder="请输入问卷标题"
+                   class="layui-input"  lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">记名/匿名</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked  name="anonymous" lay-skin="switch" lay-filter="switchAnonymous"
+                   lay-text="记名|匿名">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit id="copyQuestionnaireButton" lay-filter="copyQuestionnaireFilter">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!--编辑功能的form-->
+<form class="layui-form" action="" id="updateQuestionnaireForm" lay-filter="updateQuestionnaireForm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <input type="hidden" name="id" id="id">
+    <div class="layui-form-item">
+        <label class="layui-form-label">问卷标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" id="title" autocomplete="off" placeholder="请输入问卷标题"
+                   class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">记名/匿名</label>
+        <div class="layui-input-block">
+            <input type="checkbox" id="anonymous" name="anonymous" lay-skin="switch" lay-filter="switchAnonymous"
+                   lay-text="记名|匿名">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="updateQuestionnaireFilter">提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!--二维码-->
+<form class="layui-form" action="" id="qrCodeFrm" lay-filter="qrCodeFrm"
+      style="display: none;margin-right: 40px;margin-top: 20px">
+    <div class="layui-inline">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-inline">
+            <input type="text" name="qrCodeLink" autocomplete="off" class="layui-input qrCodeLink">
+        </div>
+        <div class="layui-input-inline">
+            <button type="button" class="layui-btn" id="btnCopyQrCode">复制</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="qrCode" style="margin-top:20px;margin-left:100px"></div>
+    </div>
+</form>
+<!--顶部搜索框-->
+<form class="layui-form" action="" style="margin-top: 10px">
+    <div class="layui-inline">
+        <label class="layui-form-label">问卷标题:</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" autocomplete="off" placeholder="问卷标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">创建人:</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createBy" autocomplete="off" placeholder="创建人" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="searchFilter">搜索</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="myButton">重置</button>
+        </div>
+    </div>
+</form>
+<table id="showQuestionnaire" lay-filter="questionnaireFilter" ></table>
+</body>
+<!--顶部工具栏-->
+<script type="text/html" id="questionnaireToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn " lay-event="addQuestionnaire">
+            <i class="layui-icon layui-icon-add-1"></i>添加问卷
+        </button>
+        <button class="layui-btn layui-btn-primary " lay-event="copyQuestionnaire">
+            <i class="layui-icon layui-icon-add-1"></i>复制问卷
+        </button>
+        <button class="layui-btn layui-btn-warm " lay-event="previewQuestionnaire">
+            <i class="layui-icon layui-icon-layer"></i>预览问卷
+        </button>
+        <button class="layui-btn layui-btn-normal " lay-event="resultQuestionnaire">
+            <i class="layui-icon layui-icon-layer"></i>查看结果
+        </button>
+        <button class="layui-btn layui-btn-danger " lay-event="deleteQuestionnaire">
+            <i class="layui-icon layui-icon-delete"></i>批量删除
+        </button>
+    </div>
+</script>
+<!--实现问卷管理操作功能按钮-->
+<script type="text/html" id="questionnaireBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="add" >添加题目</a>
+    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="publish" >发布问卷</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" >删除</a>
+</script>
+<!--状态按钮-->
+<script type="text/html" id="enableStatus">
+    {{# if (d.enabled === '1'){}}
+    <input type="checkbox" checked  name="enabled" value="{{d.id}}" lay-skin="switch" lay-filter="switchEnabled"
+           lay-text="启用|禁用">
+    {{# }else {}}
+    <input type="checkbox"  name="enabled" value="{{d.id}}" lay-skin="switch" lay-filter="switchEnabled"
+           lay-text="启用|禁用">
+    {{# }}}
+</script>
+<script th:inline="javascript">
+    var serverUrl= [[${serverUrl}]];
+    layui.extend({
+        qrcode: '/layui_exts/qrcode/qrcode' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+    })
+
+    layui.use(['table', 'layer', 'jquery', 'form','qrcode'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+        let questionnaireTable = table.render({
+            elem: '#showQuestionnaire'
+            , url: '/questionnaire/selectAll' //数据接口
+            , height: 400
+            , toolbar: '#questionnaireToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'questionnaireTable'
+            , page: true
+            , page:1
+            , limit: 5
+            , limits:[5,10,15,20]
+            , cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'id', title: '编号', width: 80, sort: true, fixed: true}
+                    , {field: 'title', title: '问卷标题', width:200}
+                    , {field: 'anonymous', title: '记名/匿名', width: 150, templet:function(d){
+                        return d.anonymous==='1'?"记名":"匿名";
+                    }}
+                    , {field: 'enabled', title: '启用/禁用', width: 150, toolbar:"#enableStatus"}
+                    , {field: 'detailsCount', title: '题目数', width: 100, sort: true}
+                    , {field: 'userCount', title: '用户数', width: 100, sort: true}
+                    , {field: 'createBy', title: '创建人', width: 100, sort: true}
+                    , {field: 'createTime', title: '创建时间',width: 180, sort: true, templet: function (d) {
+                        if (!d.createTime){
+                            return "";
+                        }
+                        return d.createTime.replace(/\"/g, "");
+                    }}
+                    , {field: 'updateBy', title: '修改人', width: 100}
+                    , {field: 'updateTime', title: '修改时间',width: 180, sort: true, templet: function (d) {
+                        if (!d.updateTime){
+                            return "";
+                        }
+                        return d.updateTime.replace(/\"/g, "");
+                    }}
+                    , {fixed: 'right', align: 'center', title: '操作', toolbar: '#questionnaireBar', width: 300}
+                ]
+            ]
+        });
+        //监听复选框事件
+        form.on('switch(switchEnabled)',function (obj){
+            console.log(obj.value+" "+this.checked)
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaire/update",
+                type: "PUT",
+                dataType: "JSON",
+                data:JSON.stringify({"id":obj.value,"enabled":this.checked?"1":"0"}),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    layer.msg(ret.msg, {icon: 6});
+                    // 刷新表格
+                    questionnaireTable.reload({
+                        where: { //设定异步数据接口的额外参数，任意设
+                            title: ""
+                            , createBy: ""
+                        }
+                        , page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            });
+        })
+
+        //监听行工具事件
+        table.on('tool(questionnaireFilter)', function (obj) {
+            let data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //删除数据库中的数据
+                    let idList = [];
+                    idList.push(data.id)
+                    $.ajax({
+                        url: "/questionnaire/delete",
+                        type: "DELETE",
+                        dataType: "JSON",
+                        data: {idList: idList},
+                        success: function (ret) {
+                            if (ret.code == 0) {
+                                //刷新表格数据
+                                questionnaireTable.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
+                                layer.msg(ret.msg, {icon: 6});
+                            } else {
+                                layer.msg(ret.msg, {icon: 5});
+                            }
+                        }
+                    });
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                if (data.anonymous == 0) {
+                    document.getElementById("anonymous").checked = false;
+                } else {
+                    document.getElementById("anonymous").checked = true;
+                }
+
+                form.val('updateQuestionnaireForm', {
+                    'id': data.id,
+                    'title': data.title
+                });
+                layer.open({
+                    title: '编辑问卷',
+                    type: 1,
+                    area: ['500px', '500px'],
+                    content: $("#updateQuestionnaireForm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            }else if(layEvent === 'add'){
+                window.location.href="/questionnaire/toQuestionnaireDetails/"+data.id;
+            }else if(layEvent === 'publish'){ //发布问卷
+                if(data.detailsCount==0){
+                    layer.msg("该问卷还没有题目，不能发布");
+                    return;
+                }else if(data.enabled=='0'){
+                    layer.msg("该问卷已被禁用，不能发布");
+                    return;
+                }
+                var link =serverUrl+"/questionnaire/toTestUserLogin/"+data.id;
+                $('.qrCode').qrcode({
+                    render: "canvas",  //table
+                    width: 200,
+                    height: 200,
+                    text: link
+                });
+                form.val("qrCodeFrm",{
+                    qrCodeLink:link
+                })
+                layer.open({
+                    title: '发布问卷',
+                    type: 1,
+                    area: ['450px', '400px'],
+                    content: $("#qrCodeFrm")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+
+
+            }
+        });
+
+        $("#btnCopyQrCode").click(function(e){
+            //点击复制按钮，复制链接
+            e.stopPropagation();
+            $(".qrCodeLink").select();
+            document.execCommand("Copy");
+            layer.msg("已复制");
+        })
+
+        //form表单实现更新功能
+        form.on('submit(updateQuestionnaireFilter)', function (data) {
+            data.field.updateBy = $("#updateBy").val();
+            alert(data.field.anonymous)
+            if (data.field.anonymous === 'on') {
+                data.field.anonymous = 1;
+            } else {
+                data.field.anonymous = 0;
+            }
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaire/update",
+                type: "PUT",
+                dataType: "JSON",
+                data: JSON.stringify(data.field),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        questionnaireTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(questionnaireFilter)', function (obj) {
+            let checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'addQuestionnaire':
+                    document.getElementById("insertQuestionnaireForm").reset();
+                    layer.open({
+                        title: '添加问卷',
+                        type: 1,
+                        area: ['500px', '450px'],
+                        content: $("#insertQuestionnaireForm")
+                    });
+                    break;
+                case 'copyQuestionnaire':
+                    if (data.length == 0) {
+                        layer.msg('请选择一行');
+                    }else if(data[0].detailsCount==0){
+                        layer.msg("该问卷还没有题目，请直接添加一个新的吧");
+                    }else {
+                        document.getElementById("copyQuestionnaireForm").reset();
+                        // 设置复制的问卷信息
+                        form.val("copyQuestionnaireForm",{fromId:data[0].id,title:data[0].title+" 副本"});
+                        layer.open({
+                            title: '复制问卷',
+                            type: 1,
+                            area: ['500px', '450px'],
+                            content: $("#copyQuestionnaireForm")
+                        });
+                    }
+                    break;
+                case 'previewQuestionnaire':
+                    if (data.length == 0) {
+                        layer.msg('请选择一行');
+                    }else if(data[0].detailsCount==0){
+                        layer.msg("该问卷还没有题目，不能预览");
+                    }else {
+                        window.location.href = '/questionnaire/toQuestionnairePreview/' + data[0].id;
+                    }
+                    break;
+                case 'resultQuestionnaire':
+                    if (data.length == 0) {
+                        layer.msg('请选择一行');
+                    }else if(data[0].userCount==0){
+                        layer.msg("该问卷还没有用户使用，不能查看结果");
+                    }else {
+                        window.location.href = '/questionnaire/toQuestionnaireResult/' + data[0].id;
+                    }
+                    break;
+                case 'deleteQuestionnaire':
+                    if (data.length == 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.confirm('真的删除行么', function () {
+                            //for循环收集所有选中的id
+                            let idList = [];
+                            for (let i = 0; i < data.length; i++) {
+                                idList[i] = data[i].id;
+                            }
+                            $.ajax({
+                                url: "/questionnaire/delete",
+                                type: "DELETE",
+                                dataType: "JSON",
+                                data: {idList: idList},
+                                success: function (ret) {
+                                    if (ret.code == 0) {
+                                        //刷新表格数据
+                                        questionnaireTable.reload({
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
+                                        layer.msg(ret.msg, {icon: 6});
+                                    } else {
+                                        layer.msg(ret.msg, {icon: 5});
+                                    }
+                                }
+                            });
+                        });
+                    }
+                    break;
+
+            }
+        });
+
+        //form表单实现添加功能
+        form.on('submit(insertQuestionnaireFilter)', function (data) {
+            data.field.createBy = $("#createBy").val();
+            if (data.field.anonymous === 'on') {
+                data.field.anonymous = 1;
+            } else {
+                data.field.anonymous = 0;
+            }
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaire/insert",
+                type: "POST",
+                dataType: "JSON",
+                data: JSON.stringify(data.field),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        questionnaireTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //form表单实现添加功能
+        form.on('submit(copyQuestionnaireFilter)', function (data) {
+            data.field.createBy = $("#createBy").val();
+            if (data.field.anonymous === 'on') {
+                data.field.anonymous = 1;
+            } else {
+                data.field.anonymous = 0;
+            }
+            //提交表单数据
+            $.ajax({
+                url: "/questionnaire/copy",
+                type: "POST",
+                dataType: "JSON",
+                data: JSON.stringify(data.field),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (ret) {
+                    if (ret.code == 0) {
+                        //关闭对话框
+                        layer.closeAll();
+                        //刷新表格数据
+                        questionnaireTable.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                        layer.msg(ret.msg, {icon: 6});
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        //实现顶部搜索框
+        form.on('submit(searchFilter)', function (data) {
+            //执行重载
+            questionnaireTable.reload({
+                where: {
+                    title: data.field.title,
+                    createBy: data.field.createBy                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        //重置条件查询表单，刷新table数据
+        $("#myButton").click(function () {
+            questionnaireTable.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    title: ""
+                    , createBy: ""
+                }
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>答题页面</title>
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <style>
+
+        .top-div {
+            padding-top: 100px;
+            background-color: rgba(234, 245, 255, 0.96);
+        }
+
+        .top-div-d {
+            width: 85%;
+            padding: 30px 30px 0px 30px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: rgba(255, 255, 255, .7);
+        }
+
+        .top-div-h {
+            padding: 5px;
+            font-weight: bolder
+        }
+
+        .top-div-p {
+            margin: 5px 0px 0px 0px;
+            color: #a9a9aa;
+        }
+
+        .mid-div {
+            padding: 40px;
+            background-color: white;
+            /*text-align: center;*/
+            margin: 0 auto;
+        }
+
+        .mid-list {
+            width: 50%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: #cacaca 0px 0px 10px;
+            margin: 0 auto;
+        }
+
+        .mid-question {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .mid-topic {
+            margin: 8px 0;
+            color: #41464b;
+            font-size: 17px;
+        }
+
+        .mid-option {
+            margin: 10px 0;
+            padding: 5px;
+            border-radius: 8px;
+            text-align: left;
+            color: #41464b;
+            background-color: #e2ecf6;
+        }
+
+        .bottom-div{
+            margin: 0 auto;
+            width: 50%;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .bottom-btn-left{
+            float: left;
+        }
+        .bottom-btn-right{
+            float: right;
+        }
+        .bottom-submit{
+            display: none;
+        }
+
+        #id_1 {
+            display: block;
+        }
+
+        @media screen and (max-device-width: 1000px) {
+            .top-div {
+                padding-top: 50px;
+            }
+
+            .mid-list {
+                width: 90%;
+            }
+            .mid-div {
+                padding: 20px;
+                /*background-color: white;*/
+                /*text-align: center;*/
+            }
+            .bottom-div{
+                width: 90%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="top-div">
+    <div class="top-div-d">
+        <h1 class="top-div-h" th:text="${questionnaire.title}"></h1>
+        <p class="top-div-p">请客观填写评价</p>
+    </div>
+</div>
+<!--问题大div,上下padding-->
+<div class="mid-div">
+    <!--  进度条加问题选项  -->
+    <div class="mid-list">
+        <!--    进度条    -->
+        <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="demo">
+            <div class="layui-progress-bar layui-bg-blue" lay-percent="1%"></div>
+        </div>
+        <!--  问题  -->
+        <input id="userId" type="hidden" th:value="${questionnaireUser.id}">
+        <input id="questionsLen" type="hidden" th:value="${questionnaireDetailsList.size()}">
+        <div th:each="question,loopStatus:${questionnaireDetailsList}">
+            <div class="mid-question"
+                 th:id="'id_'+${loopStatus.count}"
+                 th:dt="${question.detailsType}"
+                 th:did="${question.id}"
+                 th:index="${loopStatus.count}">
+                <label class="mid-topic" th:text="${loopStatus.count}+'、'+${question.detailsTitle}"></label>
+                <form class="layui-form"
+                      th:if="${question.detailsType=='0'}">
+                    <div class="layui-form-item">
+                        <div >
+                            <textarea placeholder="请输入内容"
+                                      class="layui-textarea"
+                                      th:id="'txt_'+${loopStatus.count}"
+                                      th:name="${question.id}"
+                            ></textarea>
+                        </div>
+                    </div>
+                </form>
+                <form class="layui-form"
+                      th:if="${question.detailsType=='1'}">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block mid-option">
+                            <input type="radio" lay-filter="qso"
+                                   th:id="'A_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="A" th:title="${question.optionA}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="radio" lay-filter="qso"
+                                   th:id="'B_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="B" th:title="${question.optionB}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="radio" lay-filter="qso"
+                                   th:id="'C_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="C" th:title="${question.optionC}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="radio" lay-filter="qso"
+                                   th:id="'D_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="D" th:title="${question.optionD}">
+                        </div>
+                    </div>
+                </form>
+                <form class="layui-form"
+                      th:if="${question.detailsType=='2'}">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block mid-option">
+                            <input type="checkbox" lay-filter="qsc"
+                                   lay-skin="primary"
+                                   th:id="'A_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="A" th:title="${question.optionA}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="checkbox" lay-filter="qsc"
+                                   lay-skin="primary"
+                                   th:id="'B_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="B" th:title="${question.optionB}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="checkbox" lay-filter="qsc"
+                                   lay-skin="primary"
+                                   th:id="'C_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="C" th:title="${question.optionC}">
+                        </div>
+                        <div class="layui-input-block mid-option">
+                            <input type="checkbox" lay-filter="qsc"
+                                   lay-skin="primary"
+                                   th:id="'D_'+${loopStatus.count}" th:name="${question.id}"
+                                   value="D" th:title="${question.optionD}">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-div">
+        <button id="pre_btn" type="button" class="layui-btn  layui-bg-blue bottom-btn-left">
+            <i class="layui-icon layui-icon-left"></i>
+        </button>
+        <button id="submit_btn"  type="submit" class="layui-btn  layui-btn-warm layui-btn-radius bottom-submit">提交</button>
+        <button id="next_btn"  type="button" class="layui-btn  layui-bg-blue bottom-btn-right">
+            <i class="layui-icon layui-icon-right"></i>
+        </button>
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+    layui.use(['layer', 'element', 'form', 'jquery'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            element = layui.element,
+            form = layui.form;
+
+        var resultList = [];
+        var questionsLen = $("#questionsLen").val();
+
+        function saveRes(){
+            var len = $(".mid-question:visible").size();
+            var dt = $(".mid-question:visible").attr("dt");
+            var did = $(".mid-question:visible").attr("did");
+            var index = parseInt($(".mid-question:visible").attr("index"));
+            var answer="";
+            if(dt=='0'){
+                answer = $(".mid-question:visible textarea").val();
+            }else if(dt=='1'){
+                answer = $(".mid-question:visible [type='radio']:checked").val();
+            }else if(dt=='2'){
+                $(".mid-question:visible [type='checkbox']:checked").each(function(){
+                    answer+=this.value+",";
+                });
+                answer=answer.length>0?answer.substr(0,answer.length-1):"";
+            }
+
+            if (!answer){
+                layer.msg("请填写答案!", {icon: 5});
+                return false;
+            }
+
+            //定义一个result对象
+            var result = new Object();
+            //获取测试者id
+            result.userId=$("#userId").val();
+            //获取测试题id
+            result.detailsId=did;
+            //获取答案
+            result.answer=answer;
+
+            //添加答案到resultList
+            if(index>=1&&index<=questionsLen){
+                resultList[index-1]=result;
+            }
+            //计算进度条
+            element.progress('demo', Math.ceil(index/questionsLen*100)+'%');
+
+            if(resultList.length==questionsLen){
+                $('#submit_btn').show();
+            }
+            return true;
+        }
+
+        $('#pre_btn').on('click',function () {
+            var index =parseInt($(".mid-question:visible").attr("index"));
+            if(index>1){
+                if(saveRes()) {
+                    $("div#id_" + index).hide();
+                    $("div#id_" + (index - 1)).show();
+                }
+            }
+        });
+        $('#next_btn').on('click',function () {
+            var index =parseInt($(".mid-question:visible").attr("index"));
+            if(index<=questionsLen){
+                if(saveRes()) {
+                    if (index < questionsLen) {
+                        $("div#id_" + index).hide();
+                        $("div#id_" + (index + 1)).show();
+                    }
+                }
+            }
+        });
+        $('#submit_btn').on('click',function () {
+            console.log(resultList);
+            var resultListJson = JSON.stringify(resultList);
+            if(resultList.length==questionsLen){
+                //发送ajax请求到后端
+                $.ajax({
+                    url:"/questionnaireResult/insertBatch",
+                    type: "POST",
+                    dataType:"JSON",
+                    contentType:"application/json;charset=UTF-8",
+                    data:resultListJson,
+                    success:function (ret) {
+                        if(ret.code==0){
+                            alert("恭喜答题完毕!");
+                            window.location.href="/questionnaire/toTestUserLogin/"+[[${questionnaire.id}]];
+                        }else{
+                            layer.msg(ret.msg,{icon: 5});
+                        }
+                    }
+                })
+            }else {
+                alert("请做完后在提交");
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理页面</title>
+    <script src="/js/jquery-1.10.2.js"></script>
+    <script src="/layui/layui.js"></script>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+</head>
+<body>
+<input hidden  id="createBy" name="createBy">
+<input hidden id="updateBy" name="updateBy">
+<!--添加表单-->
+<form class="layui-form" action="" style="display: none" id="addUser" lay-filter="addUserFormFilter">
+    <div class="layui-form-item">
+        <label class="layui-form-label">登录名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="loginName" required lay-verify="required" placeholder="请输入登录名" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="userName" required lay-verify="required" placeholder="请输入真实姓名" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="email" required lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phonenumber" required lay-verify="required|phone" placeholder="请输入手机号" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门</label>
+        <div class="layui-input-inline">
+            <select name="deptId" id="addDeptSelect">
+
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <select name="sex">
+                <option value="0">男</option>
+                <option value="1">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <input type="checkbox" name="status" lay-skin="switch" value="0" lay-text="启用|禁用" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="remark" placeholder="请输入备注" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-inline" id="addRoleCheckBox">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn" lay-submit lay-filter="addUserFilter" shiro:hasPermission="system:user:add">立即提交</button>
+        </div>
+    </div>
+</form>
+<!--修改表单-->
+<form class="layui-form" action="" style="display: none" id="editUser" lay-filter="editUserFormFilter">
+    <div class="layui-form-item" style="display: none">
+        <label class="layui-form-label">id</label>
+        <div class="layui-input-inline">
+            <input type="text" name="userId" required lay-verify="required" placeholder="请输入id" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登录名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="loginName" required lay-verify="required" placeholder="请输入登录名" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="userName" required lay-verify="required" placeholder="请输入真实姓名" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="email" required lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phonenumber" required lay-verify="required|phone" placeholder="请输入手机号" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门</label>
+        <div class="layui-input-inline">
+            <select name="deptId" id="editDeptSelect">
+
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <select name="sex">
+                <option value="0">男</option>
+                <option value="1">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <input type="checkbox" name="status" lay-skin="switch" value="0" lay-text="启用|禁用" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="remark" placeholder="请输入备注" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-inline" id="editRoleCheckBox">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn" lay-submit lay-filter="editUserFilter" shiro:hasPermission="system:user:edit">立即提交</button>
+        </div>
+    </div>
+</form>
+<!--查询-->
+<form class="layui-form" action="" id="search" lay-filter="searchuserFormFilter">
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="userName" placeholder="请输入姓名" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phonenumber" placeholder="请输入手机号" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <button type="button" class="layui-btn" lay-submit lay-filter="search">查询</button>
+            <button type="reset" id="searchReset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<form class="layui-form" action="" style="display: none" id="rePassword" lay-filter="rePasswordFormFilter">
+    <input type="text" hidden name="userId">
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="password" required lay-verify="required pass"  placeholder="请输入密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <button type="button" class="layui-btn" lay-submit lay-filter="rePasswordFilter" shiro:hasPermission="system:user:resetPwd">提交</button>
+        </div>
+    </div>
+</form>
+
+</form>
+<table id="user" lay-filter="userFilter"></table>
+</body>
+<!--行内按钮-->
+<script type="text/html" id="operation">
+    <a shiro:hasPermission="system:user:resetPwd" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="rePassword">重置密码</a>
+    <a shiro:hasPermission="system:user:remove" class="layui-btn layui-btn-dange layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+    <a shiro:hasPermission="system:user:edit" class="layui-btn layui-btn-xs " lay-event="edit"><i class="layui-icon layui-icon-edit"></i>修改</a>
+</script>
+<!--工具栏按钮-->
+<script type="text/html" id="toolbar">
+    <a shiro:hasPermission="system:user:add" class="layui-btn  layui-btn-xs" lay-event="add"><i class="layui-icon layui-icon-addition"></i>添加</a>
+    <a shiro:hasPermission="system:user:remove" class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delBatch"><i class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
+<script>
+    layui.use(['table', 'form', 'layer', 'laydate'], function () {
+        let table = layui.table;
+        let form = layui.form;
+        let layer = layui.layer;
+        let date = layui.laydate;
+        //第一个实例
+        table.render({
+            elem: '#user'
+            , height: 400
+            , url: '/user' //数据接口
+            , page: true//开启分页
+            , limit: 5
+            , limits: [5, 10, 15, 20]
+            , toolbar: '#toolbar'
+            , cols: [
+                [ //表头
+                    {field: 'select', width: 50, type: 'checkbox', fixed: 'left'}
+                    , {field: 'userId', title: 'ID', width: 80, sort: true}
+                    , {field: 'loginName', title: '登录名', width: 80}
+                    , {field: 'userName', title: '真实姓名', width: 80}
+                    , {field: 'email', title: '邮箱', width: 150}
+                    , {field: 'phonenumber', title: '电话', width: 120}
+                    , {
+                    field: 'sex', title: '性别', width: 50,
+                    templet: function (type) {
+                        if (type.sex === '0') {
+                            return '男';
+                        } else {
+                            return '女';
+                        }
+                    }
+                }
+                    , {field: 'avatar', title: '头像', width: 120}
+                    , {
+                    field: 'status', title: '状态', width: 120,
+                    templet: function (status) {
+                        if (status.status === '0') {
+                            return '<a class="layui-btn layui-btn-xs layui-btn-warm" >可用</a>';
+                        } else {
+                            return '<a class="layui-btn layui-btn-xs layui-btn-disabled">失效</a>';
+                        }
+                    }
+                }
+                    , {field: 'deptName', title: '部门', width: 120}
+                    , {field: 'deptId', title: '部门编号',}
+                    , {field: 'createTime', title: '创建时间', width: 120}
+                    , {field: 'createBy', title: '创建人', width: 80}
+                    , {field: 'updateBy', title: '修改人', width: 80}
+                    , {field: 'updateTime', title: '修改时间', width: 120}
+                    , {field: 'remark', title: '备注', width: 120}
+                    , {field: 'operation', title: '操作',fixed:'right', toolbar: '#operation', width: 250}
+                ]
+            ]
+        });
+        // $.ajax({
+        //     url: "/role/getAllRoleNoPage",
+        //     type: "GET",
+        //     dataType: "JSON",
+        //     success: function (result) {
+        //         let inputs = '';
+        //         for (let i = 0; i < result.data.length; i++) {
+        //             inputs += '<input type="checkbox" name="role" value="' + result.data[i].roleId + '" lay-skin="primary" title="' + result.data[i].roleName + '">'
+        //         }
+        //         $("#addRoleCheckBox").html(inputs);
+        //
+        //     }
+        // });
+        $.ajax({
+            url: "/role/getAllRoleNoPage",
+            type: "GET",
+            dataType: "JSON",
+            success: function (result) {
+                let inputs = '';
+                for (let i = 0; i < result.data.length; i++) {
+                    inputs += '<input type="checkbox" name="addRole" value="' + result.data[i].id + '" lay-skin="primary" title="' + result.data[i].roleName + '">'
+                }
+                $("#addRoleCheckBox").html(inputs);
+
+            }
+        });
+        $.ajax({
+            url: "/role/getAllRoleNoPage",
+            type: "GET",
+            dataType: "JSON",
+            success: function (result) {
+                let inputs = '';
+                for (let i = 0; i < result.data.length; i++) {
+                    inputs += '<input type="checkbox" name="editRole" value="' + result.data[i].id + '" lay-skin="primary" title="' + result.data[i].roleName + '">'
+                }
+                $("#editRoleCheckBox").html(inputs);
+
+            }
+        });
+        $.ajax({
+            url: "/dept/getAllDeptNoPage",
+            type: "get",
+            dataType: "json",
+            success: function (result) {
+                let options = '';
+                for (let i = 0; i < result.data.length; i++) {
+                    options += '<option  value="' + result.data[i].deptId + '">' + result.data[i].deptName + '</option>';
+                }
+                $("#addDeptSelect").html(options);
+                $("#editDeptSelect").html(options);
+            }
+        });
+        //工具栏按钮添加和批量删除
+        table.on('toolbar(userFilter)', function (obj) {
+            let check = table.checkStatus(obj.config.id);
+            let data = check.data;
+            let layEvent = obj.event;
+            if (layEvent === 'delBatch') {
+                if (data.length === 0) {
+                    layer.msg("请选择一行数据");
+                } else {
+                    let idList = [];
+                    for (let i = 0; i < data.length; i++) {
+                        idList[i] = data[i].userId;
+                    }
+                    layer.confirm('真的删除吗', function (index) {
+                        $.ajax({
+                            url: "/user/delete",
+                            type: "delete",
+                            data: {idList: idList},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code == '0') {
+                                    layer.closeAll();
+                                    table.reload('user', {
+                                        page: {
+                                            curr: 1
+                                        }
+                                    });
+                                    layer.msg(result.msg, {icon: 6});
+                                } else {
+                                    layer.msg(result.msg, {icon: 5});
+                                }
+                            }
+                        })
+                    })
+                }
+            } else if (layEvent === 'add') {
+                $("#addUser")[0].reset();
+                form.render();
+                layer.open({
+                    title: '添加用户',
+                    type: 1,
+                    area: ['550px', '600px'],
+                    offset: '200px',
+                    content: $("#addUser")
+                });
+                // 栏添加按钮弹出表单提交按钮触发事件
+                form.on('submit(addUserFilter)', function (data) {
+                    data.field.roleIds=[];
+                    let checkedInput = $('input[name=addRole]:checked');
+                    for(let i = 0;i<checkedInput.length;i++){
+                        if(i===checkedInput.length-1){
+                            data.field.roleIds.push(checkedInput[i].value)
+                        } else {
+                            data.field.roleIds.push(checkedInput[i].value)
+                        }
+                    }
+                    if (data.field.roleIds.length===0) {
+                        layer.msg("角色不能为空",{icon: 5});
+                        return;
+                    } else {
+                        if (data.field.status != 0) {
+                            data.field.status = 1;
+                        }
+                    }
+                    data.field.createBy = $("#createBy").val();
+                    $.ajax({
+                        url: "/user/insert",
+                        data: data.field,
+                        dataType: "json",
+                        type: "post",
+                        success: function (result) {
+                            if (result.code == '0') {
+                                layer.closeAll();
+                                form.render();
+                                table.reload('user');
+                                layer.msg(result.msg, {icon: 6});
+                            } else {
+                                layer.msg(result.msg, {icon: 5});
+                            }
+                        }
+                    })
+                })
+            }
+        })
+        //行内按钮修改删除
+        table.on('tool(userFilter)', function (obj) {
+            $("#editUser")[0].reset();
+            form.render();
+            let data = obj.data;
+            let layEvent = obj.event;
+            if (layEvent === 'edit') {
+                $.ajax({
+                    url: "/userRole/findSelected",
+                    type: "GET",
+                    data: {userId: data.userId},
+                    dataType: "JSON",
+                    success: function (result) {
+                        for (let i = 0; i < result.data.length; i++) {
+                            for (let j = 0; j < $("input[name=editRole]").length; j++) {
+                                if ($("input[name=editRole]")[j].value==result.data[i].roleId) {
+                                    $("input[name=editRole]")[j].checked = true;
+                                    break;
+                                }
+                            }
+                        }
+                        form.render()
+                    }
+                });
+                form.val('editUserFormFilter', {
+                    userId: data.userId,
+                    loginName: data.loginName,
+                    userName: data.userName,
+                    phonenumber: data.phonenumber,
+                    email: data.email,
+                    sex: data.sex,
+                    deptId: data.deptId,
+                    status: data.status == 0 ? true : false,
+                    remark:data.remark
+
+                })
+                form.render();
+                layer.open({
+                    title: '修改用户',
+                    type: 1,
+                    area: ['550px', '600px'],
+                    offset: '200px',
+                    content: $("#editUser")
+                });
+                // 栏添加按钮弹出表单提交按钮触发事件
+                form.on('submit(editUserFilter)', function (data) {
+                    data.field.roleIds=[];
+                    let checkedInput = $('input[name=editRole]:checked');
+                    for(let i = 0;i<checkedInput.length;i++){
+                        if(i===checkedInput.length-1){
+                            data.field.roleIds.push(checkedInput[i].value)
+                        } else {
+                            data.field.roleIds.push(checkedInput[i].value)
+                        }
+                    }
+                    if (data.field.roleIds.length===0) {
+                        layer.msg("角色不能为空",{icon: 5});
+                        return;
+                    } else {
+                        if (data.field.status != '0') {
+                            data.field.status = '1';
+                        }
+                    }
+                    data.field.updateBy = $("#updateBy").val();
+                    $.ajax({
+                        url: "/user/update",
+                        data: data.field,
+                        dataType: "json",
+                        type: "put",
+                        success: function (result) {
+                            if (result.code == '0') {
+                                layer.closeAll();
+                                $("#editUser")[0].reset();
+                                form.render();
+                                table.reload('user');
+                                layer.msg(result.msg, {icon: 6});
+                            } else {
+                                layer.msg(result.msg, {icon: 5});
+                            }
+                        }
+                    })
+                })
+            } else if (layEvent === 'del') {
+                if (data.length === 0) {
+                    layer.msg("请选择一行数据");
+                } else {
+                    layer.confirm('真的删除吗', function (index) {
+                        let idList = [];
+                        idList[0] = data.userId;
+                        $.ajax({
+                            url: "/user/delete",
+                            type: "delete",
+                            data: {idList: idList},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code == '0') {
+                                    layer.closeAll();
+                                    table.reload('user', {
+                                        page: {
+                                            curr: 1
+                                        }
+                                    });
+                                    layer.msg(result.msg, {icon: 6});
+                                } else {
+                                    layer.msg(result.msg, {icon: 5});
+                                }
+                            }
+                        })
+                    })
+                }
+            }else if(layEvent=='rePassword'){
+                form.val('rePasswordFormFilter', {
+                    userId: data.userId,
+                })
+                layer.open({
+                    title: '重置密码',
+                    type: 1,
+                    area: ['200', '200px'],
+                    offset: '200px',
+                    content: $("#rePassword")
+                });
+                form.on('submit(rePasswordFilter)', function (data) {
+                    $.ajax({
+                        url: "/user/rePassword",
+                        data: data.field,
+                        dataType: "json",
+                        type: "put",
+                        success: function (result) {
+                            if (result.code == '0') {
+                                layer.closeAll();
+                                $("#rePassword")[0].reset();
+                                form.render();
+                                table.reload('user');
+                                layer.msg(result.msg, {icon: 6});
+                            } else {
+                                layer.msg(result.msg, {icon: 5});
+                            }
+                        }
+                    })
+                })
+            }
+        })
+        //查询
+        form.on('submit(search)', function (data) {
+            table.reload('user', {
+                where: {
+                    userName: data.field.userName,
+                    phonenumber: data.field.phonenumber,
+                    page: 1,
+                    limit: 5
+                }
+            });
+            return false;
+        });
+        //重置按钮
+        $(document).on('click', '#searchReset', function () {
+            table.reload('user', {
+                where: {
+                    userName: null,
+                    phonenumber: null
+                }
+            })
+        });
+        form.verify({
+            email:function(value,item){
+                if(!new RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$").test(value)){
+                    return '邮箱格式不正确';
+                }
+            },
+            phone:function(value,item){
+                if(!new RegExp("^1[3|4|5|7|8][0-9]{9}$").test(value)){
+                    return '手机号格式不正确';
+                }
+            },
+            username: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '用户名不能全为数字';
+                }
+            }
+            //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+        });
+    });
+
+</script>
+</html>

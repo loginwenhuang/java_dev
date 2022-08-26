@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/一阶段人事管理项目原型/BOOT-INF/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/一阶段人事管理项目原型/BOOT-INF/lib" recursive="false" />
+  </library>
+</component>

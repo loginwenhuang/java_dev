@@ -1,0 +1,34 @@
+html{width: 100%;height:100%;}
+body{width: 100%;height:100%; background:url(../images/bg_body.jpg) no-repeat center center;background-size:100% 100%;background-attachment:fixed;}
+header{width:100%; height: 7%; line-height: 60px; color: #FFFFFF; font-size: 25px; letter-spacing: 10px; background: url(../images/bg_title.png) no-repeat center center ;background-size:100% auto; margin: 0 auto; text-align: center;}
+ul{margin: 0; padding: 0;}
+.container{width: 100%;height: 90%}
+.col-lg-3,.col-lg-6{padding: 0; margin: 0;}
+.m-20{margin-top: 15px;}
+.title{width: 100%; height: 35px; font-size: 15px; color: #ff9000; line-height: 40px; padding-left: 30px; background: url(../images/title_icon.png) left center no-repeat; }
+.data_bg{width: 40%; height: 100px; background: url(../images/data_icon.png) no-repeat;background-size:100% 100%; margin-left: 20px; text-align: center; font-size: 25px; color: #FFFFFF; padding-top: 10px;}
+small{font-size: 18px; color: #FF9000;}
+/*
+整体分布
+*/
+.left-div{float: left;height: 100%;}
+.left-fist-row{height: 50%;}
+.left-second-row{height: 50%;background: url(../images/bg_box3.png) no-repeat center center; background-size: 99% 98% ;}
+.right-div{height: 100%;float: right;background: url(../images/bg_box5.png) no-repeat center center; background-size: 99% 98% ;}
+/*
+各图形细节
+*/
+.box1{height: 100%; padding: 0 10px 0 10px;background: url(../images/bg_box1.png) no-repeat center center; background-size: 98% 98%;}
+.box1_con{ height: 95%; }
+.box2{height: 100%;padding: 0 10px 0 20px;background: url(../images/bg_box3.png) no-repeat center center; background-size: 98% 98%;}
+.box2-left{height: 100%;}
+.box2_1_con{height: 95%;}
+.box2-right{height: 100%;}
+.box2_2_con{height: 95%;}
+.box3{height: 100%;padding: 0 10px 0 10px;}
+.box3_con{height: 95%;}
+.box4_con_top{width: 90%;padding-left: 20px;}
+.box4_con_bot{width: 90%;padding-left: 20px;float: left;margin-top: 50px;}
+.box4_con_bot li{width: 100%; height: 50px;text-align: center;line-height: 50px;font-size: 15px; list-style: none; border-bottom: 1px dashed #dbdbdb; color: #F5F5F5; overflow: hidden;}
+
+

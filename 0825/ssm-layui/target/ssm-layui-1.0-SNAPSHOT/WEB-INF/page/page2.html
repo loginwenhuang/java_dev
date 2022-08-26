@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--<meta charset="utf-8">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>后台主页</title>
+		<link rel="stylesheet" href="http://localhost:8080/ssm_layui_war_exploded/assets/layui/css/layui.css">
+		<script src="http://localhost:8080/ssm_layui_war_exploded/assets/layui/layui.all.js"></script>
+	</head>
+	<body style="">
+	
+	<form style="display: none;" class="layui-form" lay-filter="staffForm" id="staffForm">
+	    <input name="sfid" style="display: none;">
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">员工姓名</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sfname" placeholder="请输入员工姓名" autocomplete="off" class="layui-input">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">性别</label>
+	        <div class="layui-input-inline">
+	            <select name="sfsex" id="sfsex">
+	                <option value="">-请选择-</option>
+	                <option value="男">男</option>
+	                <option value="女">女</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="-请选择-" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">-请选择-</dd><dd lay-value="男" class="">男</dd><dd lay-value="女" class="">女</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">年龄</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sfage" id="sfage" placeholder="请输入年龄" autocomplete="off" class="layui-input">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">身份证号</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sfcode" id="sfcode" placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">电话号</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sftel" id="sftel" placeholder="请输入电话号" autocomplete="off" class="layui-input">
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="area-picker">
+	        <div class="layui-input-inline" style="width: 100px;margin-left: 30px">
+	            <select name="province" class="province-selector" data-value="请选择" lay-filter="province-1" id="province"><option value=""></option><option value="北京市">北京市</option><option value="天津市">天津市</option><option value="河北省">河北省</option><option value="山西省">山西省</option><option value="内蒙古自治区">内蒙古自治区</option><option value="辽宁省">辽宁省</option><option value="吉林省">吉林省</option><option value="黑龙江省">黑龙江省</option><option value="上海市">上海市</option><option value="江苏省">江苏省</option><option value="浙江省">浙江省</option><option value="安徽省">安徽省</option><option value="福建省">福建省</option><option value="江西省">江西省</option><option value="山东省">山东省</option><option value="河南省">河南省</option><option value="湖北省">湖北省</option><option value="湖南省">湖南省</option><option value="广东省">广东省</option><option value="广西壮族自治区">广西壮族自治区</option><option value="海南省">海南省</option><option value="重庆市">重庆市</option><option value="四川省">四川省</option><option value="贵州省">贵州省</option><option value="云南省">云南省</option><option value="西藏自治区">西藏自治区</option><option value="陕西省">陕西省</option><option value="甘肃省">甘肃省</option><option value="青海省">青海省</option><option value="宁夏回族自治区">宁夏回族自治区</option><option value="新疆维吾尔自治区">新疆维吾尔自治区</option><option value="台湾省">台湾省</option><option value="香港特别行政区">香港特别行政区</option><option value="澳门特别行政区">澳门特别行政区</option><option value="海外">海外</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="北京市" class="">北京市</dd><dd lay-value="天津市" class="">天津市</dd><dd lay-value="河北省" class="">河北省</dd><dd lay-value="山西省" class="">山西省</dd><dd lay-value="内蒙古自治区" class="">内蒙古自治区</dd><dd lay-value="辽宁省" class="">辽宁省</dd><dd lay-value="吉林省" class="">吉林省</dd><dd lay-value="黑龙江省" class="">黑龙江省</dd><dd lay-value="上海市" class="">上海市</dd><dd lay-value="江苏省" class="">江苏省</dd><dd lay-value="浙江省" class="">浙江省</dd><dd lay-value="安徽省" class="">安徽省</dd><dd lay-value="福建省" class="">福建省</dd><dd lay-value="江西省" class="">江西省</dd><dd lay-value="山东省" class="">山东省</dd><dd lay-value="河南省" class="">河南省</dd><dd lay-value="湖北省" class="">湖北省</dd><dd lay-value="湖南省" class="">湖南省</dd><dd lay-value="广东省" class="">广东省</dd><dd lay-value="广西壮族自治区" class="">广西壮族自治区</dd><dd lay-value="海南省" class="">海南省</dd><dd lay-value="重庆市" class="">重庆市</dd><dd lay-value="四川省" class="">四川省</dd><dd lay-value="贵州省" class="">贵州省</dd><dd lay-value="云南省" class="">云南省</dd><dd lay-value="西藏自治区" class="">西藏自治区</dd><dd lay-value="陕西省" class="">陕西省</dd><dd lay-value="甘肃省" class="">甘肃省</dd><dd lay-value="青海省" class="">青海省</dd><dd lay-value="宁夏回族自治区" class="">宁夏回族自治区</dd><dd lay-value="新疆维吾尔自治区" class="">新疆维吾尔自治区</dd><dd lay-value="台湾省" class="">台湾省</dd><dd lay-value="香港特别行政区" class="">香港特别行政区</dd><dd lay-value="澳门特别行政区" class="">澳门特别行政区</dd><dd lay-value="海外" class="">海外</dd></dl></div>
+	        </div>
+	        <div class="layui-input-inline" style="width: 100px;margin-left: 10px">
+	            <select name="city" class="city-selector" data-value="请选择" lay-filter="city-1" id="city"><option value=""></option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd></dl></div>
+	        </div>
+	        <div class="layui-input-inline" style="width:100px;margin-left: 10px">
+	            <select name="county" class="county-selector" data-value="请选择" lay-filter="county-1" id="county"><option value=""></option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">家庭住址</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sfaddress" placeholder="请输入地址" autocomplete="off" class="layui-input" id="address" lay-verify="address">
+	        </div>
+	    </div>
+	    
+	    <div class="layui-form-item">
+	        <div class="layui-inline">
+	            <label class="layui-form-label">入职日期</label>
+	            <div class="layui-input-inline">
+	                <input type="text" class="layui-input" name="sfentry" id="test11" placeholder="yyyy年MM月dd日" lay-key="2">
+	            </div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="dp">
+	        <label class="layui-form-label">部门类型</label>
+	        <div class="layui-input-inline">
+	            <select name="dpid" id="dpType">
+	                <option value="">--请选择--</option>
+	            <option value="1">管理部</option><option value="2">人事部</option><option value="4">盘点部</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd><dd lay-value="1" class="">管理部</dd><dd lay-value="2" class="">人事部</dd><dd lay-value="4" class="">盘点部</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="ps">
+	        <label class="layui-form-label">职位类型</label>
+	        <div class="layui-input-inline">
+	            <select name="rid" id="psType">
+	                <option value="">--请选择--</option>
+	            <option value="1">店长</option><option value="2">盘点员</option><option value="7">普通员工</option><option value="8">财务员</option><option value="9">老板</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd><dd lay-value="1" class="">店长</dd><dd lay-value="2" class="">盘点员</dd><dd lay-value="7" class="">普通员工</dd><dd lay-value="8" class="">财务员</dd><dd lay-value="9" class="">老板</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="sta">
+	        <label class="layui-form-label">员工状态</label>
+	        <div class="layui-input-inline">
+	            <select name="sfstatus">
+	                <option value="">--请选择--</option>
+	                <option value="1">任职</option>
+	                <option value="2">冻结</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd><dd lay-value="1" class="">任职</dd><dd lay-value="2" class="">冻结</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <div class="layui-input-inline">
+	            <button class="layui-btn" lay-submit="" lay-filter="formDemo" style="margin-left: 110px">立即提交</button>
+	            <button type="reset" class="layui-btn layui-btn-primary" style="margin: -38px 0 0 210px">重置</button>
+	        </div>
+	    </div>
+	</form>
+	<form style="display: none;" class="layui-form" lay-filter="branchForm" id="branchForm">
+	    <input name="sfid" style="display: none;">
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">平调员工</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="sfname" autocomplete="off" class="layui-input" readonly="readonly">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">所属分店</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="brname" id="brone" autocomplete="off" class="layui-input" readonly="readonly">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">所属职位</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="pttype" id="rone" autocomplete="off" class="layui-input" readonly="readonly">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">所属部门</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="dpname" id="dpone" autocomplete="off" class="layui-input" readonly="readonly">
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">平调分店</label>
+	        <div class="layui-input-inline">
+	            <select name="brid" id="brType1">
+	                <option value="">--请选择--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">平调部门</label>
+	        <div class="layui-input-inline">
+	            <select name="dpid" id="dpType1">
+	                <option value="">--请选择--</option>
+	            <option value="1">管理部</option><option value="2">人事部</option><option value="4">盘点部</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd><dd lay-value="1" class="">管理部</dd><dd lay-value="2" class="">人事部</dd><dd lay-value="4" class="">盘点部</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">平调职位</label>
+	        <div class="layui-input-inline">
+	            <select name="rid" id="psType1">
+	                <option value="">--请选择--</option>
+	            <option value="1">店长</option><option value="2">盘点员</option><option value="7">普通员工</option><option value="8">财务员</option><option value="9">老板</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择--</dd><dd lay-value="1" class="">店长</dd><dd lay-value="2" class="">盘点员</dd><dd lay-value="7" class="">普通员工</dd><dd lay-value="8" class="">财务员</dd><dd lay-value="9" class="">老板</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <div class="layui-input-inline">
+	            <button class="layui-btn" lay-submit="" lay-filter="formDemo2" style="margin-left: 150px">提交审核</button>
+	        </div>
+	    </div>
+	</form>
+	
+	
+	<div class="layui-collapse">
+	    <div class="layui-colla-item">
+	        <h2 class="layui-colla-title">搜索<i class="layui-icon layui-colla-icon"></i></h2>
+	        <div class="layui-colla-content layui-show">
+	            <div class="demoTable layui-form">
+	                <div class="layui-inline">
+	                    <input class="layui-input" placeholder="请输入员工编号" name="sfid" id="sfid" autocomplete="off">
+	                </div>
+	                <div class="layui-inline">
+	                    <input class="layui-input" placeholder="请输入员工姓名" name="sfname" id="sfname" autocomplete="off">
+	                </div>
+	                <div class=" layui-input-inline">
+	                    <select name="dpid" id="searchType">
+	                        <option value="">--请选择部门--</option>
+	                    <option value="1">管理部</option><option value="2">人事部</option><option value="4">盘点部</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择部门--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择部门--</dd><dd lay-value="1" class="">管理部</dd><dd lay-value="2" class="">人事部</dd><dd lay-value="4" class="">盘点部</dd></dl></div>
+	                </div>
+	                <div class=" layui-input-inline" id="brths">
+	                    <select name="brid" id="branchType">
+	                        <option value="">--请选择分店--</option>
+	                    <option value="1">总店</option><option value="2">北京二号店</option><option value="14">北京一号店1</option><option value="20">北京朝阳区分店</option><option value="21">河南</option><option value="22">郑州一号店</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择分店--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择分店--</dd><dd lay-value="1" class="">总店</dd><dd lay-value="2" class="">北京二号店</dd><dd lay-value="14" class="">北京一号店1</dd><dd lay-value="20" class="">北京朝阳区分店</dd><dd lay-value="21" class="">河南</dd><dd lay-value="22" class="">郑州一号店</dd></dl></div>
+	                </div>
+	                <div class="layui-inline">
+	                    <input type="text" class="layui-input" name="testtime" id="test10" placeholder="入职日期时间范围" lay-key="1">
+	                </div>
+	                <button class="layui-btn" id="staffSearch" data-type="reload">搜索</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<table id="demo" lay-filter="test" style="margin-top: -10px;"></table><div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1" lay-id="test" style=" "><div class="layui-table-tool"><div class="layui-table-tool-temp"> <div class="layui-btn-container"> <button class="layui-btn layui-btn-sm" lay-event="add">新增</button> <button class="layui-btn layui-btn-sm" lay-event="refresh">刷新</button> </div> </div><div class="layui-table-tool-self"><div class="layui-inline" title="筛选列" lay-event="LAYTABLE_COLS"><i class="layui-icon layui-icon-cols"></i></div><div class="layui-inline" title="导出" lay-event="LAYTABLE_EXPORT"><i class="layui-icon layui-icon-export"></i></div><div class="layui-inline" title="打印" lay-event="LAYTABLE_PRINT"><i class="layui-icon layui-icon-print"></i></div></div></div><div class="layui-table-box"><div class="layui-table-header"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><thead><tr><th data-field="sfid" data-key="1-0-0" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-0" align="center"><span>员工编号</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="sfname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1" align="center"><span>姓名</span></div></th><th data-field="sfsex" data-key="1-0-2" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-2" align="center"><span>性别</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="sfage" data-key="1-0-3" class=""><div class="layui-table-cell laytable-cell-1-0-3" align="center"><span>年龄</span></div></th><th data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4"><span>身份证号</span></div></th><th data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5"><span>电话号</span></div></th><th data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6"><span>家庭住址</span></div></th><th data-field="sfentry" data-key="1-0-7" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-7"><span>入职时间</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"><span>离职时间</span></div></th><th data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"><span>部门编号</span></div></th><th data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"><span>职位编号</span></div></th><th data-field="position.pttype" data-key="1-0-11" class=""><div class="layui-table-cell laytable-cell-1-0-11" align="center"><span>职位</span></div></th><th data-field="department.dpname" data-key="1-0-12" class=""><div class="layui-table-cell laytable-cell-1-0-12" align="center"><span>部门</span></div></th><th data-field="branch.brname" data-key="1-0-13" class=""><div class="layui-table-cell laytable-cell-1-0-13" align="center"><span>分店</span></div></th><th data-field="sfstatus" data-key="1-0-14" class=""><div class="layui-table-cell laytable-cell-1-0-14" align="center"><span>员工状态</span></div></th><th data-field="15" data-key="1-0-15" class=" layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"><span>操作</span></div></th></tr></thead></table></div><div class="layui-table-body layui-table-main"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><tbody><tr data-index="0" class=""><td data-field="sfid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">1</div></td><td data-field="sfname" data-key="1-0-1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-1">老王</div></td><td data-field="sfsex" data-key="1-0-2" data-content="女" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-2">  <span style="color: #F581B1;">女</span>  </div></td><td data-field="sfage" data-key="1-0-3" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-3">19</div></td><td data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4">412569875615356489</div></td><td data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5">16359489654</div></td><td data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6">河南省洛阳市伊川县</div></td><td data-field="sfentry" data-key="1-0-7" class=""><div class="layui-table-cell laytable-cell-1-0-7">2021-07-26 00:00:00</div></td><td data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"></div></td><td data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"></div></td><td data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"></div></td><td data-field="position.pttype" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">老板</div></td><td data-field="department.dpname" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">管理部</div></td><td data-field="branch.brname" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">总店</div></td><td data-field="sfstatus" data-key="1-0-14" data-content="1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">  <button class="layui-btn layui-btn-sm" lay-event="add">任职中</button>  </div></td><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="1" class=""><td data-field="sfid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">29</div></td><td data-field="sfname" data-key="1-0-1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-1">老李</div></td><td data-field="sfsex" data-key="1-0-2" data-content="男" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-2">  <span style="color: #499C54;">男</span>  </div></td><td data-field="sfage" data-key="1-0-3" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-3">2</div></td><td data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4">165635945896535648</div></td><td data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5">12313123111</div></td><td data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6">北京市北京市丰台区</div></td><td data-field="sfentry" data-key="1-0-7" class=""><div class="layui-table-cell laytable-cell-1-0-7">2021-07-15 12:59:50</div></td><td data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"></div></td><td data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"></div></td><td data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"></div></td><td data-field="position.pttype" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">店长</div></td><td data-field="department.dpname" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">管理部</div></td><td data-field="branch.brname" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">北京一号店1</div></td><td data-field="sfstatus" data-key="1-0-14" data-content="1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">  <button class="layui-btn layui-btn-sm" lay-event="add">任职中</button>  </div></td><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="2" class=""><td data-field="sfid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">31</div></td><td data-field="sfname" data-key="1-0-1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-1">老张</div></td><td data-field="sfsex" data-key="1-0-2" data-content="男" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-2">  <span style="color: #499C54;">男</span>  </div></td><td data-field="sfage" data-key="1-0-3" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-3">12</div></td><td data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4">410329200007081514</div></td><td data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5">12653654896</div></td><td data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6">辽宁省沈阳市苏家屯区</div></td><td data-field="sfentry" data-key="1-0-7" class=""><div class="layui-table-cell laytable-cell-1-0-7">2021-07-29 04:34:39</div></td><td data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"></div></td><td data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"></div></td><td data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"></div></td><td data-field="position.pttype" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">店长</div></td><td data-field="department.dpname" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">管理部</div></td><td data-field="branch.brname" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">北京朝阳区分店</div></td><td data-field="sfstatus" data-key="1-0-14" data-content="1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">  <button class="layui-btn layui-btn-sm" lay-event="add">任职中</button>  </div></td><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="3" class=""><td data-field="sfid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">32</div></td><td data-field="sfname" data-key="1-0-1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-1">老白</div></td><td data-field="sfsex" data-key="1-0-2" data-content="男" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-2">  <span style="color: #499C54;">男</span>  </div></td><td data-field="sfage" data-key="1-0-3" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-3">12</div></td><td data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4">213123659458635456</div></td><td data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5">15689654532</div></td><td data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6">河北省石家庄市藁城区</div></td><td data-field="sfentry" data-key="1-0-7" class=""><div class="layui-table-cell laytable-cell-1-0-7">2021-07-29 09:54:18</div></td><td data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"></div></td><td data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"></div></td><td data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"></div></td><td data-field="position.pttype" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">店长</div></td><td data-field="department.dpname" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">管理部</div></td><td data-field="branch.brname" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">北京二号店</div></td><td data-field="sfstatus" data-key="1-0-14" data-content="1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">  <button class="layui-btn layui-btn-sm" lay-event="add">任职中</button>  </div></td><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="4" class=""><td data-field="sfid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">37</div></td><td data-field="sfname" data-key="1-0-1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-1">小王</div></td><td data-field="sfsex" data-key="1-0-2" data-content="男" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-2">  <span style="color: #499C54;">男</span>  </div></td><td data-field="sfage" data-key="1-0-3" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-3">18</div></td><td data-field="sfcode" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4">413029194551549781</div></td><td data-field="sftel" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5">18337954615</div></td><td data-field="sfaddress" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6">辽宁省沈阳市皇姑区</div></td><td data-field="sfentry" data-key="1-0-7" class=""><div class="layui-table-cell laytable-cell-1-0-7">2021-07-28 21:44:45</div></td><td data-field="sfquit" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"></div></td><td data-field="dpid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"></div></td><td data-field="rid" data-key="1-0-10" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-10"></div></td><td data-field="position.pttype" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">店长</div></td><td data-field="department.dpname" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">管理部</div></td><td data-field="branch.brname" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">总店</div></td><td data-field="sfstatus" data-key="1-0-14" data-content="1" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">  <button class="layui-btn layui-btn-sm" lay-event="add">任职中</button>  </div></td><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr></tbody></table></div><div class="layui-table-fixed layui-table-fixed-r" style="right: -1px;"><div class="layui-table-header"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><thead><tr><th data-field="15" data-key="1-0-15" class=" layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"><span>操作</span></div></th></tr></thead></table><div class="layui-table-mend"></div></div><div class="layui-table-body" style="height: 195px;"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><tbody><tr data-index="0" class=""><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="1" class=""><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="2" class=""><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="3" class=""><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr><tr data-index="4" class=""><td data-field="15" data-key="1-0-15" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-15"> <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>  <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>  <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button> </div></td></tr></tbody></table></div></div></div><div class="layui-table-page"><div id="layui-table-page1"><div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1"><a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0"><i class="layui-icon"></i></a><span class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>1</em></span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="layui-laypage-next" data-page="2"><i class="layui-icon"></i></a><span class="layui-laypage-skip">到第<input type="text" min="1" value="1" class="layui-input">页<button type="button" class="layui-laypage-btn">确定</button></span><span class="layui-laypage-count">共 8 条</span><span class="layui-laypage-limits"><select lay-ignore=""><option value="5" selected="">5 条/页</option><option value="10">10 条/页</option><option value="15">15 条/页</option><option value="20">20 条/页</option></select></span></div></div></div><style>.laytable-cell-1-0-0{  }.laytable-cell-1-0-1{  }.laytable-cell-1-0-2{  }.laytable-cell-1-0-3{  }.laytable-cell-1-0-4{  }.laytable-cell-1-0-5{  }.laytable-cell-1-0-6{  }.laytable-cell-1-0-7{  }.laytable-cell-1-0-8{  }.laytable-cell-1-0-9{  }.laytable-cell-1-0-10{  }.laytable-cell-1-0-11{  }.laytable-cell-1-0-12{  }.laytable-cell-1-0-13{  }.laytable-cell-1-0-14{  }.laytable-cell-1-0-15{ width: 220px; }</style></div>
+	
+	<script type="text/html" id="toolbarDemo">
+	    <div class="layui-btn-container">
+	        <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+	        <button class="layui-btn layui-btn-sm" lay-event="refresh">刷新</button>
+	    </div>
+	</script>
+	
+	<script type="text/html" id="barDemo">
+	    <button class="layui-btn layui-btn-warm layui-btn-xs" id="pdbranch" lay-event="pdUpdate">平调</button>
+	    <a class="layui-btn layui-btn-xs" lay-event="updateStaff">编辑</a>
+	    {{#  if(d.sfstatus == 1){ }}
+	    <button class="layui-btn layui-btn-warm layui-btn-xs" lay-event="upStatus">冻结</button>
+	    {{#  } else if(d.sfstatus == 2){ }}
+	    <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upStatus">解冻</button>
+	    {{#  } }}
+	    <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="upQuitStatus">解雇</button>
+	</script>
+	
+	<script type="text/html" id="titleTpl">
+	    {{#  if(d.sfstatus == 1){ }}
+	    <button class="layui-btn  layui-btn-sm" lay-event="add">任职中</button>
+	    {{#  } else if(d.sfstatus == 2){ }}
+	    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="add">冻结中</button>
+	    {{#  } }}
+	</script>
+	<script>
+	    layui.config({
+	        base: '/huawei/./mods/'
+	        , version: '1.0'
+	    });
+	</script>
+	<script>
+	    //地区三级联动
+	    layui.use(['layer', 'form', 'jquery', 'layarea_lc'], function () {
+	        var layer = layui.layer
+	            , form = layui.form
+	            , $ = layui.jquery
+	            , layarea_lc = layui.layarea_lc;
+	
+	
+	        layarea_lc.render({
+	            elem: '#area-picker',
+	            data: {
+	                province: '--选择省--',
+	                city: '--选择市--',
+	                county: '--选择区--',
+	            },
+	            name: "name"
+	            , change: function (res) {
+	                //选择结果
+	            }
+	        });
+	        form.on('select(county-1)', function (data) {
+	            var p = $("#province").val();
+	            var c = $("#city").val();
+	            var a = $("#county").val();
+	            $("#address").attr("value", p + c + a);
+	        });
+	    })
+	</script>
+	<script type="text/html" id="sexTpl">
+	    {{#  if(d.sfsex === '女'){ }}
+	    <span style="color: #F581B1;">{{ d.sfsex }}</span>
+	    {{#  } else { }}
+	    <span style="color: #499C54;">{{ d.sfsex }}</span>
+	    {{#  } }}
+	</script>
+	<script>
+	    //js方式获取本地时间+1天
+	    Date.prototype.toLocaleStringTomorrow = function () {
+	        var dateTime = new Date();
+	        dateTime = dateTime.setDate(dateTime.getDate() + 1);
+	        dateTime = new Date(dateTime);
+	        var y = dateTime.getFullYear();
+	        var m = dateTime.getMonth() + 1;
+	        m = m < 10 ? '0' + m : m;
+	        var d = dateTime.getDate();
+	        d = d < 10 ? ("0" + d) : d;
+	        return y + "-" + m + "-" + d;
+	    }
+	
+	    layui.use(['table', 'form', 'jquery', 'layer', 'laydate', 'element'], function () {
+	        var table = layui.table;
+	        var form = layui.form;
+	        var $ = layui.jquery;
+	        var layer = layui.layer;
+	        var laydate = layui.laydate;
+	        var element = layui.element;
+	
+	        var tomorrowTime = (new Date()).toLocaleStringTomorrow();
+	
+	        //日期时间范围
+	        $("#test10").focus(function () {
+	            $("#test10").val("");
+	        })
+	        laydate.render({
+	            elem: '#test10'
+	            , type: 'datetime'
+	            , range: true
+	            , max: tomorrowTime
+	        });
+	        //入职时间
+	        laydate.render({
+	            elem: '#test11'
+	            , format: 'yyyy-MM-dd'
+	            , max: tomorrowTime
+	        });
+	        //生效
+	        function sx() {
+	            $("#sub").attr("disabled", true)
+	        }
+	//失效
+	        function xx() {
+	            $("#sub").attr("disabled", false)
+	        }
+	        //身份证验证
+	
+	        $("#sfcode").blur(function () {
+	            var aaa2 = $("#sfcode").val();
+	            var lastIDNum = aaa2.charAt(17);
+	            if (aaa2.length != 18) {
+	                layer.msg("身份证号位数有误")
+	            } else if (isNaN(parseInt(aaa2.charAt(i))) && lastIDNum.toLowerCase() != 'x') {
+	                layer.msg("您输入的身份证号码最后一位不是数字也不是x");
+	
+	            }
+	            for (i = 0; i < aaa2.length - 1; i++) {
+	                if (isNaN(parseInt(aaa2.charAt(i)))) {
+	                    bbbb();
+	                    layer.msg("您输入的身份证号码前17位包含有字母");
+	                }
+	            }
+	        })
+	
+	        $("#sfage").blur(function () {
+	            var cc1 = $("#sfage").val();
+	            if(!(/^[0-9]+$/.test( cc1 ))||cc1<18 || cc1 >60){
+	                layer.msg("年龄不符合我公司规定呀");
+	                sx();
+	
+	            }
+	
+	        })
+	        $("#sftel").blur(function () {
+	            var aaa1 = $("#sftel").val();
+	            if (aaa1.length != 11) {
+	                layer.msg("手机号位数有误")
+	                sub = sub + 1;
+	            } else if (aaa1.substring(0, 1) != 1) {
+	                layer.msg("手机号格式错误");
+	                sub = sub + 1;
+	
+	            }
+	        })
+	
+	
+	
+	
+	        $("#sfcode").bind("input", function () {
+	            $.post("/huawei/staff/getSfCode", {"sfcode": $("#sfcode").val()}, function (backdata) {
+	                if (backdata.code == 2) {
+	                    sub = sub + 1;
+	                    layer.msg('身份证号重复呢，请重新填写', {icon: 5})
+	                    sx();
+	                } else {
+	                    sub = 0;
+	                    xx();
+	                }
+	            }, 'json')
+	        });
+	
+	        /*/!*员手机号验证*!/*/
+	
+	
+	        $("#sftel").blur(function () {
+	            var phone = $("#sftel").val();
+	            $.ajax({
+	                url:'/huawei/staff/getTel',
+	                type:"POST",
+	                data:{"sftel":sftel},
+	                async: false,
+	                dataType:"json",
+	                success:function (result) {
+	                    if (result.code==1){//手机号不重复
+	                        xx();
+	
+	                    }else{//手机号重复
+	                        layer.msg("手机号重复");
+	                        sx();
+	                    }
+	                }
+	            })
+	        })
+	
+	
+	        //页面加载完后  填充部门类型的下拉框
+	        $.ajax({
+	            url: "/huawei/department/getAllDepartment",
+	            type: "get",
+	            dataType: "json",
+	            success: function (dptypes) {
+	
+	                //将查到的部门类型信息填充到类型下拉框中
+	
+	                $.each(dptypes, function (i, obj) {
+	
+	                    $("#dpType").append(
+	                        $("<option>").attr("value", obj["dpid"]).text(obj["dpname"])
+	                    )
+	                    $("#dpType1").append(
+	                        $("<option>").attr("value", obj["dpid"]).text(obj["dpname"])
+	                    )
+	                    $("#searchType").append(
+	                        $("<option>").attr("value", obj["dpid"]).text(obj["dpname"])
+	                    )
+	                })
+	                //执行表单的更新渲染方法
+	                form.render('select');
+	
+	                /*$.each(types,function (i, obj) {
+	
+	                })*/
+	            }
+	        })
+	        $.ajax({
+	            url: "/huawei/position/getAllPosition2",
+	            type: "get",
+	            dataType: "json",
+	            success: function (pstypes) {
+	
+	                //将查到的职位类型信息填充到类型下拉框中
+	
+	                $.each(pstypes, function (i, obj) {
+	
+	                    $("#psType").append(
+	                        $("<option>").attr("value", obj["rid"]).text(obj["pttype"])
+	                    )
+	                    $("#psType1").append(
+	                        $("<option>").attr("value", obj["rid"]).text(obj["pttype"])
+	                    )
+	                })
+	                //执行表单的更新渲染方法
+	                form.render('select');
+	
+	                /*$.each(types,function (i, obj) {
+	
+	                })*/
+	            }
+	        })
+	        $.ajax({
+	            url: "/huawei/branch/getAllBranch",
+	            type: "get",
+	            dataType: "json",
+	            success: function (brtypes) {
+	                //将查到的部门类型信息填充到类型下拉框中
+	                $.each(brtypes, function (i, obj) {
+	                    $("#brType").append(
+	                        $("<option>").attr("value", obj["brid"]).text(obj["brname"])
+	                    )
+	                    $("#branchType").append(
+	                        $("<option>").attr("value", obj["brid"]).text(obj["brname"])
+	                    )
+	
+	                })
+	                //执行表单的更新渲染方法
+	                form.render('select');
+	
+	                /*$.each(types,function (i, obj) {
+	
+	                })*/
+	            }
+	        })
+	        //表单的提交事件
+	        //监听事件
+	        form.on('submit(formDemo)', function (data) {
+	            //向后台发送请求
+	            $.ajax({
+	                url: '/huawei/staff/addOrUpdStaff',
+	                type: "POST",
+	                data: data.field,
+	                //因为layui 在表单提交时 有时候会自动拦截我们的异步请求
+	                //所以此处改位同步请求
+	                async: false,
+	                dataType: "json",
+	                success: function (result) {
+	                    layer.closeAll();
+	                    if (result.code == 1) {
+	                        //重载表格
+	                        layer.msg(result.msg, {icon: 1});
+	                        table.reload("test");
+	
+	                    } else {
+	                        layer.msg(result.msg, {icon: 5});
+	                    }
+	                }
+	            })
+	            return false;
+	        });
+	        form.on('submit(formDemo2)', function (data) {
+	            //向后台发送请求
+	            $.ajax({
+	                url: '/huawei/move/moveStaff',
+	                type: "POST",
+	                data: data.field,
+	                //因为layui 在表单提交时 有时候会自动拦截我们的异步请求
+	                //所以此处改位同步请求
+	                async: false,
+	                dataType: "json",
+	                success: function (result) {
+	                    layer.closeAll();
+	                    if (result.code == 1) {
+	                        layer.msg(result.msg, {icon: 1});
+	                        table.reload("test");
+	                    } else {
+	                        layer.msg(result.msg, {icon: 5});
+	                    }
+	                }
+	            })
+	            return false;
+	        });
+	
+	        //搜索时，执行表格的重载事件
+	        $("#staffSearch").click(function () {
+	            table.reload('test', {
+	                page: {
+	                    curr: 1 //重新从第 1 页开始
+	                },
+	                where: { //设定异步数据接口的额外参数，任意设
+	                    sfid: $("#sfid").val(),
+	                    sfname: $("#sfname").val(),
+	                    dpid: $("#searchType").val(),
+	                    testtime: $("#test10").val(),
+	                    brid: $("#branchType").val()
+	                }
+	            }); //只重载数据
+	        })
+	
+	        //加载表格的实例
+	        table.render({
+	            id: "test",
+	            //elem element 元素---》表格的容器
+	            elem: '#demo'//table标签的id属性值
+	            , cellMinWidth: 80
+	            , url: '/huawei/staff/getAllStaff' //数据接口
+	            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+	            , cols: [[ //表头
+	                 {field: 'sfid', title: '员工编号', sort: true, align: 'center'}
+	                , {field: 'sfname', title: '姓名', align: 'center'}
+	                , {field: 'sfsex', title: '性别', align: 'center', sort: true, templet: '#sexTpl'}
+	                , {field: 'sfage', title: '年龄', align: 'center'}
+	                , {field: 'sfcode', title: '身份证号'}
+	                , {field: 'sftel', title: '电话号'}
+	                , {field: 'sfaddress', title: '家庭住址'}
+	                , {field: 'sfentry', title: '入职时间', sort: true}
+	                , {field: 'sfquit', title: '离职时间', hide: true}
+	                , {field: 'dpid', title: '部门编号', hide: true}
+	                , {field: 'rid', title: '职位编号', hide: true}
+	                , {
+	                    field: 'position.pttype', title: '职位', align: 'center', templet: function (data) {
+	                        return data.position.pttype;
+	                    }
+	                }
+	                , {
+	                    field: 'department.dpname', title: '部门', align: 'center', templet: function (data) {
+	                        return data.department.dpname;
+	                    }
+	                }
+	                , {
+	                    field: 'branch.brname', title: '分店', align: 'center', templet: function (data) {
+	                        return data.branch.brname;
+	                    }
+	                }
+	                , {field: 'sfstatus', title: '员工状态', align: 'center', templet: '#titleTpl'}
+	                , {fixed: 'right', title: '操作', width: 220, toolbar: '#barDemo'}
+	            ]],
+	            even: true,
+	            page: true,//开启分页
+	            limit: 5,//默认每页显示的条数
+	            limits: [5, 10, 15, 20]//自定义分页条数的选择
+	        });
+	
+	        //头工具栏事件
+	        //toolbar()括号中的参数就是  table容器中 lay-filter属性的值
+	        table.on('toolbar(test)', function (obj) {
+	            var checkStatus = table.checkStatus(obj.config.id);
+	            switch (obj.event) {
+	                /**
+	                 * case后边的具体字符串跟 toolbarDemo中的 lay-event属性值一样
+	                 */
+	                case 'add':
+	                    $("#area-picker").css("display", "block");
+	                    $("#dp").css("display", "block");
+	                    $("#ps").css("display", "block");
+	                    $("#sta").css("display", "block");
+	                    //先执行清空表单的方法，再打开弹出框
+	                    $("#staffForm")[0].reset();
+	                    layer.open({
+	                        type: 1,
+	                        title: '新增员工信息',
+	                        content: $("#staffForm"), //这里content是一个普通的String
+	                        area: ['400px', '640px'],
+	                        offset: 't'
+	                    });
+	
+	                    break;
+	                case 'refresh':
+	
+	                    table.reload('test', {
+	                        page: {
+	                            curr: 1 //重新从第 1 页开始
+	                        }
+	                    }); //只重载数据
+	                    break;
+	            }
+	            ;
+	        });
+	
+	        //监听行工具事件
+	        ////tool()括号中的参数就是  table容器中 lay-filter属性的值
+	        table.on('tool(test)', function (obj) {
+	            //取出当前点击的行的数据
+	            var data = obj.data;
+	            if (obj.event === 'upStatus') {
+	
+	                layer.confirm("真的要解冻/冻结吗？", function (index) {
+	                    $.ajax({
+	                        type: 'get'
+	                        , url: '/huawei/staff/updStatus'
+	                        , data: {"sfid": data.sfid, "sfstatus": data.sfstatus}
+	                        , dataType: 'json'
+	                        , success: function (result) {
+	                            if (result.code == 1) {
+	                                layer.msg(result.msg, {icon: 5});
+	                                table.reload("test");
+	                            }
+	                            layer.msg(result.msg, {icon: 1});
+	                        }
+	                    })
+	                    layer.close(index);
+	                })
+	            } else if (obj.event === 'upQuitStatus') {
+	                layer.confirm("确定要炒他鱿鱼吗？", function (index) {
+	                    $.ajax({
+	                        type: 'get'
+	                        , url: '/huawei/staff/updQuitStatus'
+	                        , data: {"sfid": data.sfid, "sfstatus": data.sfstatus}
+	                        , dataType: 'json'
+	                        , success: function (result) {
+	                            if (result.code == 1) {
+	                                layer.msg(result.msg, {icon: 5});
+	                                table.reload("test");
+	                            }
+	                            layer.msg(result.msg, {icon: 1});
+	                        }
+	                    })
+	                    layer.close(index);
+	                })
+	            } else if (obj.event === 'updateStaff') {
+	                $("#area-picker").css("display", "none");
+	                $("#dp").css("display", "none");
+	                $("#ps").css("display", "none");
+	                $("#sta").css("display", "none");
+	                //先执行清空表单的方法，再打开弹出框
+	                $("#staffForm")[0].reset();
+	                layer.open({
+	                    type: 1,
+	                    title: '修改员工信息',
+	                    content: $("#staffForm"), //这里content是一个普通的String
+	                    area: ['400px', '480px'],
+	                    offset: 't'
+	                });
+	                //填充表单
+	                data.dpid = data.department.dpid;
+	                data.rid = data.position.rid;
+	                form.val('staffForm', data);
+	
+	            } else if (obj.event === 'pdUpdate') {
+	                layer.open({
+	                    type: 1,
+	                    title: '员工平调',
+	                    content: $("#branchForm"), //这里content是一个普通的String
+	                    area: ['400px', '480px'],
+	                    offset: 't'
+	                })
+	                form.val('branchForm', {
+	                    "sfid": data.sfid,
+	                    "brname": data.branch.brname,
+	                    "sfname": data.sfname,
+	                    "dpname": data.department.dpname,
+	                    "pttype": data.position.pttype,
+	                    "dpid": "",
+	                    "rid": "",
+	                    "brid": ""
+	                });
+	                $.ajax({
+	                    url: "/huawei/branch/getAllNotId",
+	                    type: "get",
+	                    dataType: "json",
+	                    data: {"brid":1},
+	                    success: function (brtypes) {
+	                        $("#branchType").empty()
+	                        $("#branchType").append($("<option>").attr("value", "").text('--请选择分店--'))
+	                        //将查到的部门类型信息填充到类型下拉框中
+	                        $.each(brtypes, function (i, obj) {
+	                            $("#brType1").append(
+	                                $("<option>").attr("value", obj["brid"]).text(obj["brname"])
+	                            )
+	                        })
+	                        //执行表单的更新渲染方法
+	                        form.render('select');
+	                    }
+	                })
+	            }
+	        });
+	
+	    });
+	</script>
+	
+	
+	</body>
+</html>

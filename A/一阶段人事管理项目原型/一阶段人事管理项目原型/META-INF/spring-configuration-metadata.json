@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "aliyun",
+      "type": "com.cloudwise.config.AliyunOssConfig",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "aliyun.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    },
+    {
+      "name": "aliyun.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    },
+    {
+      "name": "aliyun.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    },
+    {
+      "name": "aliyun.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    },
+    {
+      "name": "aliyun.url-prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.cloudwise.config.AliyunOssConfig"
+    }
+  ],
+  "hints": []
+}

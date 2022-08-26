@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.dao.QuestionnaireDao">
+    <resultMap id="resultMap" type="Questionnaire" >
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="enabled" property="enabled"/>
+        <result column="delete_flag" property="deleteFlag"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="detailsCount" property="detailsCount"/>
+        <result column="userCount" property="userCount"/>
+    </resultMap>
+
+    <select id="listByPage" resultMap="resultMap">
+        select id,
+               title,
+               anonymous,
+               enabled,
+               delete_flag,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               (select count(*) from tbl_questionnaire_details
+                where questionnaire_id=tq.id) as detailsCount,
+               (select count(distinct user_id)
+               from tbl_questionnaire_result tr
+               join tbl_questionnaire_details td
+               on tr.details_id= td.id
+                where td.questionnaire_id=tq.id) as userCount
+        from tbl_questionnaire tq
+        where tq.delete_flag!='1'
+        <if test="questionnaire.title!='' and questionnaire.title!=null ">
+            and tq.title like concat('%',#{questionnaire.title},'%')
+        </if>
+        order by tq.id
+        limit ${(page-1)*limit },#{limit}
+
+
+    </select>
+
+</mapper>
+

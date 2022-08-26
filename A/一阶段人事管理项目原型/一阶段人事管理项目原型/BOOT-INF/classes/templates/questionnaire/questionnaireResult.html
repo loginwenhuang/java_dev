@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷预览</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <style type="text/css">
+        .question{
+            border:1px solid #009688;
+            font-size:16px;
+            margin-top: 10px;
+        }
+
+        .question h1{
+            text-align: center;
+            margin:0px;
+            padding:10px;
+            background-color: #009688;
+            color:#fff;
+        }
+        .question .con{
+            padding:10px;
+            margin:10px 0px;
+        }
+        .question label{
+            display: block;
+            font-size:18px;
+            font-weight: bold;
+            margin:10px 0px;
+        }
+        .question > .con > div{
+            border-bottom:1px dashed #009688;
+            padding:3px 0px;
+        }
+        .question p{
+            padding:10px 0px;
+        }
+        .question textarea{
+            outline: none;
+            border:1px solid #009688;
+            height:100px;
+            width: 100%;
+            display: block;
+        }
+        .layui-form{
+            margin-top:20px;
+        }
+        .layui-form > a{
+            font-size:14px;
+            color:#fff;
+        }
+        .layui-form > span{
+            font-size:22px;
+            color:#009688;
+            float: right;
+            width:300px;
+        }
+        .users{
+            width:200px;
+            min-height: 300px;
+            position: fixed;
+            top:60px;
+            left:50px;
+            border:1px solid #009688;
+            z-index: 9999;
+        }
+        .users ul{
+            margin:0px;
+            padding:0px;
+        }
+        .users li{
+            padding:10px;
+            border-bottom: 1px dashed #009688;
+        }
+        .users li:hover{
+            background-color: #009688;
+        }
+
+        .users li:hover a{
+            color: #fff;
+        }
+
+        .users li.on{
+            background-color: #009688;
+        }
+        .users li.on a{
+            color: #fff;
+        }
+
+        .users span{
+            display: block;
+            height:40px;
+            line-height: 40px;
+            font-size:24px;
+            text-align: center;
+            background-color: #009688;
+            color:#fff;
+        }
+        .users a{
+            font-size:18px;
+            color:#009688;
+        }
+    </style>
+</head>
+<body>
+<div class="users">
+    <span th:text="${userList.size()}+'人'"></span>
+    <ul>
+        <li th:each="u : ${userList}">
+            <a href="javascript:void(0)"
+               th:qid = "${u.questionnaireId}"
+               th:uid = "${u.id}"
+               th:text="${u.name}+'('+${u.phone}+')'"></a>
+        </li>
+    </ul>
+</div>
+
+<script type="text/html" id="resToolbar">
+    <div class="layui-btn-container">
+
+    </div>
+</script>
+<!--表格模式-->
+<div class="tabData" id="tabData" style="display: none">
+    <table id="tabResult" lay-filter="tabResult" ></table>
+</div>
+
+<!--问卷模式-->
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-xs8 layui-col-xs-offset2">
+            <form class="layui-form" id="myFrm">
+                <a href="/questionnaire/toQuestionnaire" class="layui-btn layui-btn-normal">
+                    <i class="layui-icon layui-icon-return"></i>
+                    返回到问卷列表页面
+                </a>
+                <button type="button" id="btnShowTab" class="layui-btn layui-btn-normal">
+                    <i class="layui-icon layui-icon-table"></i>
+                    表格视图
+                </button>
+                <span>填写人: <i></i></span>
+                <input type="hidden" th:value="${questionnaireId}" name="questionnaireId">
+                <div class="question">
+                    <h1 th:text="${questionnaire.title}"></h1>
+                    <div class="con">
+                    <div th:each="details,loopStatus : ${questionnaireDetails}">
+                        <label th:text="${loopStatus.count}+'、'+${details.detailsTitle}" ></label>
+                        <th:block th:if="${details.detailsType=='0'}" class="layui-form-item">
+                            <textarea th:name="${details.id}"></textarea>
+                        </th:block>
+
+                        <th:block th:if="${details.detailsType=='1'}" class="layui-form-item">
+                            <p>
+                            A. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'A_'+${loopStatus.count}"
+                                     th:title="${details.optionA}"
+                                     value="A" >
+                            </p>
+                            <p>
+                            B. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'B_'+${loopStatus.count}"
+                                     th:title="${details.optionB}"
+                                     value="B" >
+                            </p>
+                            <p>
+                            C. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'C_'+${loopStatus.count}"
+                                     th:title="${details.optionC}"
+                                     value="C"  >
+                            </p>
+                            <p>
+                            D. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'D_'+${loopStatus.count}"
+                                     th:title="${details.optionD}"
+                                     value="D" >
+                            </p>
+                        </th:block>
+                        <th:block th:if="${details.detailsType=='2'}" class="layui-form-item">
+                            <p>
+                                A. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'A_'+${loopStatus.count}"
+                                          th:title="${details.optionA}"
+                                          value="A"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                B. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'B_'+${loopStatus.count}"
+                                          th:title="${details.optionB}"
+                                          value="B"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                C. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'C_'+${loopStatus.count}"
+                                          th:title="${details.optionC}"
+                                          value="C"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                D. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'D_'+${loopStatus.count}"
+                                          th:title="${details.optionD}"
+                                          value="D"
+                                          lay-skin="primary">
+                            </p>
+                        </th:block>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var questionnaireId = [[${questionnaireId}]];
+    var from = [[${from}]];
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+        // 渲染表格
+        let resTable = table.render({
+            elem: '#tabResult'
+            , url: '/questionnaireResult/selectPager' //数据接口
+            , where:{questionnaireId:questionnaireId}
+            , height: 400
+            , toolbar: '#resToolbar' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print']
+            , title: 'resTable'
+            , page: true
+            , page:1
+            , limit: 5
+            , limits:[5,10,15,20]
+            , cols: [
+                [ //表头
+                    {field: 'questionnaireDetails.detailsOrder', title: '题目序号', width: 100, sort: true, fixed: true,templet(d){
+                            return d.questionnaireDetails.detailsOrder;
+                    }}
+                    , {field: 'questionnaireDetails.detailsTitle', title: '题目标题', width:200,templet(d){
+                        return d.questionnaireDetails.detailsTitle;
+                    }}
+                    , {field: 'questionnaireDetails.detailsType', title: '题目类型', width:200,templet:function(d){
+                        return d.questionnaireDetails.detailsType=='0'?"问答题":d.questionnaireDetails.detailsType=='1'?"单选题":"复选题";
+                    }}
+                    , {field: 'questionnaireDetails.optionA', title: '选项A', width:200,templet:function(d){
+                        return d.questionnaireDetails.optionA;
+                    }}
+                    , {field: 'questionnaireDetails.otpionB', title: '选项B', width:200,templet:function(d){
+                        return d.questionnaireDetails.optionB;
+                    }}
+                    , {field: 'questionnaireDetails.otpionC', title: '选项C', width:200,templet:function(d){
+                        return d.questionnaireDetails.optionC;
+                    }}
+                    , {field: 'questionnaireDetails.otpionD', title: '选项D', width:200,templet:function(d){
+                        return d.questionnaireDetails.optionD;
+                    }}
+                    , {field: 'questionnaireUser.name', title: '姓名', width:200,templet:function(d){
+                        return d.questionnaireUser.name;
+                    }}
+                    , {field: 'questionnaireUser.phone', title: '手机', width:200,templet:function(d){
+                        return d.questionnaireUser.phone;
+                    }}
+                    , {field: 'answer', title: '填写内容', width:200}
+                ]
+            ]
+        });
+
+        $("#btnShowTab").click(function(){
+            layer.open({
+                title: '问卷结果',
+                type: 1,
+                area: ['1000px', '500px'],
+                content: $("#tabData")//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+        })
+
+        //绑定名字单击事件
+        $(".users a").click(function(){
+            // 重置表单
+            $("#myFrm")[0].reset();
+            form.render();
+            $("#myFrm > span > i").html("");
+            // 设置答卷人
+            $("#myFrm > span > i").html($(this).html());
+            // 设置样式
+            $(".users li").removeClass("on");
+            $(this).parent("li").addClass("on");
+
+            var uid = $(this).attr("uid");
+            var qid = $(this).attr("qid");
+            $.ajax({
+                url: "/questionnaireResult/"+qid+"/"+uid,
+                type: "GET",
+                dataType: "JSON",
+                success: function (ret) {
+                    console.log(ret)
+                    if (ret.code == 0) {
+                        var resultList = ret.data;
+                        for (var i=0;i<resultList.length;i++){
+                            var r = resultList[i];
+                            //console.log(r);
+                            var details = r.questionnaireDetails;
+                            //console.log(details);
+                            var answer = r.answer;
+                            // 数据转为数组
+                            if(details.detailsType=='1'){
+                                answer =[answer];
+                            }else if(details.detailsType=='2'){
+                                answer =answer.split(",");
+                            }
+                            if(details.detailsType=='0'){
+                                $("#myFrm textarea[name='"+details.id+"']").val(r.answer);
+                            }else if(details.detailsType=='1'){
+                                $("#myFrm input[type='radio'][name='"+details.id+"']").val(answer);
+                            }else if(details.detailsType=='2'){
+                                $("#myFrm input[type='checkbox'][name='"+details.id+"']").val(answer);
+                            }
+                        }
+
+                        //重新渲染表单
+                        form.render();
+
+                    } else {
+                        layer.msg(ret.msg, {icon: 5});
+                    }
+                }
+            });
+
+        })
+    });
+</script>
+</html>

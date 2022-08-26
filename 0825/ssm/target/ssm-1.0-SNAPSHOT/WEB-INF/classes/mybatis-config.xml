@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+        <!--下划线转小驼峰-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--配置懒加载-->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <typeAliases>
+        <!--设置某个类的简写别名,别名日志显示为乱码原因不明-->
+        <!--针对某个包下的所有类设置别名-->
+        <package name="com.wen.demo.entity"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="offsetAsPageNum" value="true"/>
+            <!--配置数据库方言 4.0版本以后不用写-->
+            <!--<property name="helperDialect" value="mysql"/>-->
+            <!--是否做count查询-->
+            <property name="rowBoundsWithCount" value="true"/>
+            <!--合理化分页-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+
+        <plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+            <!--主键自增回写方法,默认值MYSQL -->
+            <!--<property name="IDENTITY" value="MYSQL" />-->
+            <!--通用Mapper默认接口，我们定义的Mapper需要实现该接口 -->
+            <property name="mappers" value="com.github.abel533.mapper.Mapper"/>
+        </plugin>
+    </plugins>
+
+
+</configuration>

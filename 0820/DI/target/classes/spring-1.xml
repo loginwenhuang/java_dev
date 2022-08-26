@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <!--<bean id="stu" class="com.wen.Student">
+           <property name="name" value="张三"/>
+           <property name="sex" value="男"/>
+           <property name="age" value="20"/>
+           <property name="tall" value="1.7"/>
+
+           <property name="hobbies">
+               <list>
+                   <value>篮球</value>
+                   <value>钢琴</value>
+                   <value>学习</value>
+               </list>
+           </property>
+       </bean>-->
+    <bean id="stu" class="com.wen.Student">
+        <constructor-arg name="name" value="张三"/>
+        <constructor-arg name="sex" value="男"/>
+        <constructor-arg name="age" value="20"/>
+        <constructor-arg name="tall" value="1.7"/>
+        <constructor-arg name="hobbies">
+            <list>
+                <value>篮球</value>
+                <value>钢琴</value>
+                <value>学习</value>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

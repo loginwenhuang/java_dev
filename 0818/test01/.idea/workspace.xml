@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7f3028ce-d19d-4d6b-b22f-ecd0d2d71b15" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/interceptor/MyInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/java/com/mapper/StudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/test00/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/java/com/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/java/com/mapper/GoodsMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/java/com/mapper/IGoodsDaoCo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/main/resources/mybatis-config-gen.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/test/java/com/test/DemoGen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0819/wj/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0817/wj/logs/fj.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../0817/wj/logs/fj.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0817/wj/src/main/resources/com/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../0817/wj/src/main/resources/com/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0817/wj/target/classes/com/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../0817/wj/target/classes/com/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test10/src/test/java/com/test/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test10/src/test/java/com/test/MyTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Mybatis-config" />
+        <option value="db" />
+        <option value="xxxMapper" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\repository" />
+        <option name="mavenHome" value="C:\maven\apache-maven-3.6.2" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.6.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2DWC7BOBKDpmITtA2Wm3NRF7rhz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindowCommit.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test00" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="MyTest.studentList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="studentList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MyTest.studentList" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f3028ce-d19d-4d6b-b22f-ecd0d2d71b15" name="Default Changelist" comment="" />
+      <created>1660805287293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660805287293</updated>
+      <workItem from="1660805288471" duration="3808000" />
+      <workItem from="1660809179818" duration="46000" />
+      <workItem from="1660893453919" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

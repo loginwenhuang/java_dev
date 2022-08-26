@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.dao.TestResultDao">
+
+
+    <delete id="deleteBatchByTestIds">
+        delete from tbl_test_result where tester_id in
+        <foreach collection="idList" item="temp" separator="," open="(" close=")">
+            #{temp}
+        </foreach>
+    </delete>
+    <select id="selectAllQuestion" resultType="java.lang.Integer">
+        select question_id from tbl_test_result group by question_id
+    </select>
+    <select id="selectQuesAndOpt" resultType="com.cloudwise.entity.TestResult">
+        select * from tbl_test_result where question_id=#{questionId} and answer=#{answer}
+    </select>
+</mapper>
+

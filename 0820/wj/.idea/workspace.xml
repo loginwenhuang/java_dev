@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9be1c629-d1b0-4171-a4b7-1fb48b3f137d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/java/com/wen/Hobby.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/java/com/wen/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/java/com/wen/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/java/com/wen/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/resources/spring-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/resources/spring-2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/main/resources/spring-3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DI/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/entity/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/entity/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/factory/Factory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/factory/PetFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/java/com/factory/StudentFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/main/resources/spring-2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factory/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/java/com/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/java/com/mapper/IGoodsDaoCo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/resources/Mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test00/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/God.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/FactoryInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/PetFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/factory/StaticFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/test/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../0819/Spring/src/test/java/com/test/MyTest2.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring" />
+        <option value="Class" />
+        <option value="spring-beans.schema" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HierarchyBrowserManager">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\repository" />
+        <option name="mavenHome" value="C:\maven\apache-maven-3.6.2" />
+        <option name="userSettingsFile" value="C:\maven\apache-maven-3.6.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Db9h8OCLtSHySPv3Iew8um7AXK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager" selected="JUnit.MyTest.stuStaticTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.godTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="godTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.newStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="newStudent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.petTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="petTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.stuPublicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="stuPublicTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.stuStaticTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.MyTest" />
+      <option name="METHOD_NAME" value="stuStaticTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MyTest.stuStaticTest" />
+        <item itemvalue="JUnit.MyTest.newStudent" />
+        <item itemvalue="JUnit.MyTest.godTest" />
+        <item itemvalue="JUnit.MyTest.stuPublicTest" />
+        <item itemvalue="JUnit.MyTest.petTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9be1c629-d1b0-4171-a4b7-1fb48b3f137d" name="Default Changelist" comment="" />
+      <created>1660957035606</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660957035606</updated>
+      <workItem from="1660957036905" duration="6601000" />
+      <workItem from="1660978220838" duration="5090000" />
+      <workItem from="1661129955484" duration="74000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

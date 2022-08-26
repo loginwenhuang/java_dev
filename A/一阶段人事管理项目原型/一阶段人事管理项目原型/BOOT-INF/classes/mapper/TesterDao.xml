@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.dao.TesterDao">
+
+    <insert id="saveTester" parameterType="com.cloudwise.entity.Tester" keyProperty="id" useGeneratedKeys="true">
+        insert into tbl_tester (name, phone, create_time)
+        values (#{name}, #{phone}, now())
+    </insert>
+    <update id="updateTester" parameterType="com.cloudwise.entity.Tester">
+        update tbl_tester
+        set name=#{name},
+            phone=#{phone}
+        where id = #{id}
+    </update>
+    <delete id="deleteTester">
+        delete
+        from tbl_tester
+        where id = #{id}
+    </delete>
+    <delete id="deleteTesterByIds">
+        delete from tbl_tester where id in
+        <foreach collection="idList" item="temp" separator="," open="(" close=")">
+            #{temp}
+        </foreach>
+    </delete>
+    <delete id="deleteNoResult">
+        delete from tbl_tester where id not in (select tester_id from tbl_test_result) and TIME_TO_SEC(timediff(now(),create_time))>3600
+    </delete>
+    <select id="selectTesterById" parameterType="integer" resultType="com.cloudwise.entity.Tester">
+        select * from tbl_tester
+        <where>
+            <if test="id！=null and id!=''">
+                and id=#{id}
+            </if>
+        </where>
+    </select>
+    <!-- <select id="selectAllTester"  resultType="com.cloudwise.entity.Tester">
+         select * from tbl_tester
+             <where>
+                 <if test="tester.name!=null and tester.name!=''">
+                     and name like concat(concat('%',#{tester.name}),'%')
+                 </if>
+                 <if test="tester.phone!=null and tester.phone!=''">
+                     and  phone like concat(concat('%',#{tester.phone}),'%')
+                 </if>
+             </where>
+
+         limit ${(page-1)*limit },#{limit}
+     </select>-->
+    <select id="selectAllTester" resultType="com.cloudwise.entity.TesterVo">
+        select xxx.*, tbl_tester.name, tbl_tester.phone, tbl_tester.create_time
+        from (select temp_count.tester_id,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+                                     then
+                                     result_count
+                                 end
+                         ) as red_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+                                     then
+                                     result_count
+                                 end
+                         ) as blue_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+                                     then
+                                     result_count
+                                 end
+                         ) as yellow_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+                                     then
+                                     result_count
+                                 end
+                         ) as green_count
+              from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+                    from tbl_test_result ttr
+                             left join tbl_question tq on ttr.question_id = tq.id
+
+                    group by tq.type, ttr.tester_id, ttr.answer) temp_count
+              group by temp_count.tester_id) xxx
+                 left join tbl_tester on xxx.tester_id = tbl_tester.id
+        <where>
+            <if test="tester.name!=null and tester.name!=''">
+                and name like concat(concat('%',#{tester.name}),'%')
+            </if>
+            <if test="tester.phone!=null and tester.phone!=''">
+                and phone like concat(concat('%',#{tester.phone}),'%')
+            </if>
+        </where>
+        order by tester_id desc
+        limit ${(page-1)*limit },#{limit}
+
+
+    </select>
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*)
+        from (select temp_count.tester_id,
+        sum(
+        case
+        when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+        then
+        result_count
+        end
+        ) as red_count,
+        sum(
+        case
+        when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+        then
+        result_count
+        end
+        ) as blue_count,
+        sum(
+        case
+        when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+        then
+        result_count
+        end
+        ) as yellow_count,
+        sum(
+        case
+        when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+        then
+        result_count
+        end
+        ) as green_count
+        from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+        from tbl_test_result ttr
+        left join tbl_question tq on ttr.question_id = tq.id
+
+        group by tq.type, ttr.tester_id, ttr.answer) temp_count
+        group by temp_count.tester_id) xxx
+        left join tbl_tester on xxx.tester_id = tbl_tester.id
+        <where>
+            <if test="tester.name!=null and tester.name!=''">
+                and name like concat(concat('%',#{tester.name}),'%')
+            </if>
+            <if test="tester.phone!=null and tester.phone!=''">
+                and phone like concat(concat('%',#{tester.phone}),'%')
+            </if>
+        </where>
+
+    </select>
+    <select id="checkPhone" resultType="java.lang.Integer">
+            select  count(*) from tbl_tester
+            <where>
+                <if test="phone!=null and phone !=''">
+                    and phone=#{phone}
+                </if>
+            </where>
+    </select>
+    <select id="selectTesterVoById"  resultType="com.cloudwise.entity.TesterVo">
+        select xxx.*, tbl_tester.name, tbl_tester.phone, tbl_tester.create_time
+        from (select temp_count.tester_id,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+        then
+        result_count
+        end
+        ),0) as red_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+        then
+        result_count
+        end
+        ),0) as blue_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+        then
+        result_count
+        end
+        ),0) as yellow_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+        then
+        result_count
+        end
+        ),0) as green_count
+        from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+        from tbl_test_result ttr
+        left join tbl_question tq on ttr.question_id = tq.id
+
+        group by tq.type, ttr.tester_id, ttr.answer) temp_count
+        group by temp_count.tester_id) xxx
+        left join tbl_tester on xxx.tester_id = tbl_tester.id
+        where xxx.tester_id=#{id}
+    </select>
+    <select id="selectTesterByPhone" resultType="com.cloudwise.entity.Tester">
+        select * from tbl_tester where phone=#{param1}
+    </select>
+
+
+
+
+    <select id="selectAllTesterVoNopage" resultType="com.cloudwise.entity.TesterVo">
+        select xxx.*, tbl_tester.name, tbl_tester.phone, tbl_tester.create_time
+        from (select temp_count.tester_id,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+        then
+        result_count
+        end
+        ),0) as red_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+        then
+        result_count
+        end
+        ),0) as blue_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+        then
+        result_count
+        end
+        ),0) as yellow_count,
+        IFNULL(sum(
+        case
+        when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+        then
+        result_count
+        end
+        ),0) as green_count
+        from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+        from tbl_test_result ttr
+        left join tbl_question tq on ttr.question_id = tq.id
+
+        group by tq.type, ttr.tester_id, ttr.answer) temp_count
+        group by temp_count.tester_id) xxx
+        left join tbl_tester on xxx.tester_id = tbl_tester.id
+
+        order by tester_id desc
+    </select>
+
+    <select id="selectAllDayPeople" resultType="com.cloudwise.entity.DayPeople">
+        select t.myDay, count(*) num from (
+                select DATE_FORMAT(create_time, "%Y-%m-%d") myDay from tbl_tester)
+                as t
+        group by t.myDay;
+    </select>
+
+    <select id="selectNowTesters" resultType="com.cloudwise.entity.Tester">
+        select * from tbl_tester where id  not in
+    (select  tester_id from tbl_test_result)
+    order by create_time    desc
+    </select>
+
+
+
+<!--   第二个大屏接口-->
+    <select id="getTodayCount" resultType="java.lang.Long">
+        select count(*) from tbl_tester where TO_DAYS(create_time)=TO_DAYS(now())
+    </select>
+    <select id="getMonthCount" resultType="com.cloudwise.entity.Month">
+        select
+            sum(case month(create_time) when '1' then 1 else 0 end) as Jan,
+            sum(case month(create_time) when '2' then 1 else 0 end) as Feb,
+            sum(case month(create_time) when '3' then 1 else 0 end) as Mar,
+            sum(case month(create_time) when '4' then 1 else 0 end) as Apr,
+            sum(case month(create_time) when '5' then 1 else 0 end) as May,
+            sum(case month(create_time) when '6' then 1 else 0 end) as June,
+            sum(case month(create_time) when '7' then 1 else 0 end) as July,
+            sum(case month(create_time) when '8' then 1 else 0 end) as Aug,
+            sum(case month(create_time) when '9' then 1 else 0 end) as Sept,
+            sum(case month(create_time) when '10' then 1 else 0 end) as Oct,
+            sum(case month(create_time) when '11' then 1 else 0 end) as Nov,
+            sum(case month(create_time) when '12' then 1 else 0 end) as Dece
+        from tbl_tester
+    </select>
+    <select id="findAllCount" resultType="java.lang.Long">
+        select count(*)
+        from (select temp_count.tester_id,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+                                     then
+                                     result_count
+                                 end
+                         ) as red_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+                                     then
+                                     result_count
+                                 end
+                         ) as blue_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+                                     then
+                                     result_count
+                                 end
+                         ) as yellow_count,
+                     sum(
+                             case
+                                 when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+                                     then
+                                     result_count
+                                 end
+                         ) as green_count
+              from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+                    from tbl_test_result ttr
+                             left join tbl_question tq on ttr.question_id = tq.id
+
+                    group by tq.type, ttr.tester_id, ttr.answer) temp_count
+              group by temp_count.tester_id) xxx
+                 inner join tbl_tester on xxx.tester_id = tbl_tester.id
+    </select>
+    <select id="findCharacter" resultType="com.cloudwise.entity.CharacterA">
+        select
+            count(
+                    case
+                        when ((ifnull(red_count,0)>=ifnull(yellow_count,0)) and (ifnull(red_count,0)>=ifnull(blue_count,0)) and (ifnull(red_count,0)>=ifnull(green_count,0)))
+                            then
+                            red_count
+                        when (red_count=yellow_count=15 or red_count=blue_count=15 or red_count=green_count=15)
+                            then
+                            red_count
+                        end) redCount,
+            count(
+                    case
+                        when ((ifnull(yellow_count,0) >ifnull(red_count,0)) and (ifnull(yellow_count,0) >= ifnull(blue_count,0)) and (ifnull(yellow_count,0) >= ifnull(green_count,0)))
+                            then
+                            yellow_count
+                        when (yellow_count=blue_count=15 or yellow_count=green_count=15)
+                            then
+                            yellow_count
+                        end
+                ) yellowCount,
+            count(
+                    case
+                        when ((ifnull(blue_count,0)>ifnull(red_count,0)) and (ifnull(blue_count,0)>ifnull(yellow_count,0)) and (ifnull(blue_count,0)>=ifnull(green_count,0)))
+                            then
+                            blue_count
+                        when (blue_count=green_count=15)
+                            then
+                            blue_count
+                        end
+                ) blueCount,
+            count(
+                    case
+                        when ((ifnull(green_count,0)>ifnull(red_count,0)) and (ifnull(green_count,0)>ifnull(blue_count,0)) and (ifnull(green_count,0)>ifnull(yellow_count,0)))
+                            then
+                            green_count
+                        end
+                ) greenCount
+
+        from (select *
+              from (select temp_count.tester_id,
+                           sum(
+                                   case
+                                       when ((type = 1 and answer = 'A') or (type = 2 and answer = 'D'))
+                                           then
+                                           ifnull(result_count,0)
+                                       end
+                               ) as red_count,
+                           sum(
+                                   case
+                                       when ((type = 1 and answer = 'B') or (type = 2 and answer = 'C'))
+                                           then
+                                           ifnull(result_count,0)
+                                       end
+                               ) as blue_count,
+                           sum(
+                                   case
+                                       when ((type = 1 and answer = 'C') or (type = 2 and answer = 'B'))
+                                           then
+                                           ifnull(result_count,0)
+                                       end
+                               ) as yellow_count,
+                           sum(
+                                   case
+                                       when ((type = 1 and answer = 'D') or (type = 2 and answer = 'A'))
+                                           then
+                                           ifnull(result_count,0)
+                                       end
+                               ) as green_count
+                    from (select tq.type, ttr.tester_id, ttr.answer, count(ttr.id) result_count
+                          from tbl_test_result ttr
+                                   left join tbl_question tq on ttr.question_id = tq.id
+
+                          group by tq.type, ttr.tester_id, ttr.answer) temp_count
+                    group by temp_count.tester_id) xxx
+                       inner join tbl_tester on xxx.tester_id = tbl_tester.id) tester;
+    </select>
+</mapper>
+

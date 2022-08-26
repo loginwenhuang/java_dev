@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>AAA性格测试系统</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        #main{
+            width:100%;
+            height:98%;
+            margin-top:-100px;
+            background-image: url("/static/image/mm.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        #p{
+            font-size:30px;
+            color: #eb7350;
+            margin-top:10px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="p" style="margin-top:5px;">
+    <h1 style="color:red;margin:0 0;">Thanks<br/>感谢您的参与</h1>
+    <div id="show" style='color:red;font-size:28px;'></div>
+</div>
+<div id="main">
+</div>
+</body>
+<script type="text/javascript">
+    var time=3;   //设置倒计时时间
+    function closeWindow(){   //自定义函数
+        window.setTimeout('closeWindow()',1000);  //设置的时间函数
+        if(time>0){
+            document.getElementById("show").innerHTML=" <font style='color:red;'>"+time+"</font>秒后跳到登陆页面";
+            time--;
+        }else{
+           window.location.href="/toTestLogin"
+        }
+    }
+    closeWindow();
+</script>
+</html>

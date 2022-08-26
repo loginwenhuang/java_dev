@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.dao.QuestionnaireDetailsDao">
+    <insert id="copyQuestionnaireDetails">
+        insert into tbl_questionnaire_details
+        (questionnaire_id,details_title,details_type,details_order,option_a,option_b,option_c,option_d,create_by)
+        select
+            #{toQuestionnaireId},details_title,details_type,details_order,option_a,option_b,option_c,option_d,#{createBy}
+        from
+            tbl_questionnaire_details
+        where questionnaire_id = #{fromQuestionnaireId}
+    </insert>
+</mapper>
+

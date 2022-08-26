@@ -1,0 +1,19 @@
+1.导入数据库(proj_hr):
+mysql8
+localhost:3306
+root/123456
+
+2.运行项目
+  java -jar questionnaire-test-0.0.1-SNAPSHOT.jar
+
+3.使用项目
+
+用户测试
+http://localhost:8002/test/toTestLogin
+后台
+http://localhost:8002/toLogin
+admin/123456
+
+4.根据项目功能，每个小组进行数据库设计
+
+

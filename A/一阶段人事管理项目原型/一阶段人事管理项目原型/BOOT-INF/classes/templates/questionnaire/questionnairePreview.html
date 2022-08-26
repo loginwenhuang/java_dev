@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷预览</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <style type="text/css">
+        .question{
+            border:1px solid #009688;
+            font-size:16px;
+        }
+
+        .question h1{
+            text-align: center;
+            margin:0px;
+            padding:10px;
+            background-color: #009688;
+            color:#fff;
+        }
+        .question .con{
+            padding:10px;
+            margin:10px 0px;
+        }
+        .question label{
+            display: block;
+            font-size:18px;
+            font-weight: bold;
+            margin:10px 0px;
+        }
+        .question > .con > div{
+            border-bottom:1px dashed #009688;
+            padding:3px 0px;
+        }
+        .question p{
+            padding:10px 0px;
+        }
+        .question textarea{
+            outline: none;
+            border:1px solid #009688;
+            height:100px;
+            width: 100%;
+            display: block;
+        }
+        .layui-form{
+            margin-top:20px;
+        }
+        .layui-form > a{
+            font-size:22px;
+            color:#009688;
+            margin-right:15px;
+        }
+        .layui-form > span{
+            font-size:22px;
+            color:#009688;
+            float: right;
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-xs8 layui-col-xs-offset2">
+
+            <form class="layui-form">
+                <a href="/questionnaire/toQuestionnaire">返回到问卷列表页面</a>
+                <a th:href="|/questionnaire/toQuestionnaireDetails/${questionnaireId}|">返回到问卷明细页面</a>
+
+                <input type="hidden" th:value="${questionnaireId}" name="questionnaireId">
+                <div class="question">
+                    <h1 th:text="${questionnaire.title}"></h1>
+                    <div class="con">
+                    <div th:each="details,loopStatus : ${questionnaireDetails}">
+                        <label th:text="${loopStatus.count}+'、'+${details.detailsTitle}" ></label>
+                        <th:block th:if="${details.detailsType=='0'}" class="layui-form-item">
+                            <textarea></textarea>
+                        </th:block>
+
+                        <th:block th:if="${details.detailsType=='1'}" class="layui-form-item">
+                            <p>
+                            A. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'A_'+${loopStatus.count}"
+                                     th:title="${details.optionA}"
+                                     value="A" >
+                            </p>
+                            <p>
+                            B. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'B_'+${loopStatus.count}"
+                                     th:title="${details.optionB}"
+                                     value="B" >
+                            </p>
+                            <p>
+                            C. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'C_'+${loopStatus.count}"
+                                     th:title="${details.optionC}"
+                                     value="C"  >
+                            </p>
+                            <p>
+                            D. <input th:type="radio"
+                                     th:name="${details.id}"
+                                     th:id="'D_'+${loopStatus.count}"
+                                     th:title="${details.optionD}"
+                                     value="D" >
+                            </p>
+                        </th:block>
+                        <th:block th:if="${details.detailsType=='2'}" class="layui-form-item">
+                            <p>
+                                A. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'A_'+${loopStatus.count}"
+                                          th:title="${details.optionA}"
+                                          value="A"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                B. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'B_'+${loopStatus.count}"
+                                          th:title="${details.optionB}"
+                                          value="B"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                C. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'C_'+${loopStatus.count}"
+                                          th:title="${details.optionC}"
+                                          value="C"
+                                          lay-skin="primary">
+                            </p>
+                            <p>
+                                D. <input th:type="checkbox"
+                                          th:name="${details.id}"
+                                          th:id="'D_'+${loopStatus.count}"
+                                          th:title="${details.optionD}"
+                                          value="D"
+                                          lay-skin="primary">
+                            </p>
+                        </th:block>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script th:inline="javascript">
+    var questionnaireId = [[${questionnaireId}]];
+    var from = [[${from}]];
+    layui.use(['table', 'layer', 'jquery', 'form'], function () {
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+
+    });
+</script>
+</html>

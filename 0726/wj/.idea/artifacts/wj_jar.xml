@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="wj:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/wj_jar</output-path>
+    <root id="root">
+      <element id="archive" name="wj.jar">
+        <element id="module-output" name="wj" />
+      </element>
+      <element id="library" level="project" name="log4j-1.2.9" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,5 @@
+运行环境Eclipse
+Tomcat服务器版本8.5
+数据库版本MySQL5.7
+JDK1.8
+系统管理员登录账号密码：admin  123456

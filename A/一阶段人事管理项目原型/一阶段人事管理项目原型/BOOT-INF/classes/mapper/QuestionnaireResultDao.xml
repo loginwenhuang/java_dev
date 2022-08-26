@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwise.dao.QuestionnaireResultDao">
+    <resultMap id="resultMap" type="QuestionnaireResultVO" autoMapping="true">
+        <id property="id" column="resultId"/>
+        <association property="questionnaire" javaType="Questionnaire" autoMapping="true">
+            <id property="id" column="questionnaireId"/>
+            <result property="title" column="questionnaireTitle"/>
+        </association>
+        <association property="questionnaireDetails" javaType="QuestionnaireDetails" autoMapping="true">
+            <id property="id" column="questionnaireDetailsId"/>
+        </association>
+        <association property="questionnaireUser" javaType="QuestionnaireUser" autoMapping="true">
+            <id property="id" column="userId"/>
+        </association>
+    </resultMap>
+    <sql id="resultQuery">
+        select
+            tq.id as questionnaireId,
+            tq.title as questionnaireTitle,
+            tqd.id as questionnaireDetailsId,
+            tqd.details_type as detailsType,
+            tqd.details_title as detailsTitle,
+            tqd.details_order as detailsOrder,
+            tqd.option_a as optionA,
+            tqd.option_b as optionB,
+            tqd.option_c as optionC,
+            tqd.option_d as optionD,
+            tqr.id as resultId,
+            tqr.answer as answer,
+            (select count(*) from tbl_questionnaire_result
+             where details_Id=tqd.id
+               and tqd.details_type!='0'
+            and answer like '%A%') as optionACount,
+            (select count(*) from tbl_questionnaire_result
+        where details_Id=tqd.id
+          and tqd.details_type!='0'
+          and answer like '%B%') as optionBCount,
+            (select count(*) from tbl_questionnaire_result
+        where details_Id=tqd.id
+          and tqd.details_type!='0'
+          and answer like '%C%') as optionCCount,
+            (select count(*) from tbl_questionnaire_result
+        where details_Id=tqd.id
+          and tqd.details_type!='0'
+          and answer like '%D%') as optionDCount,
+            tqu.id as userId,
+            tqu.name ,
+            tqu.phone
+        from tbl_questionnaire tq
+            join tbl_questionnaire_details tqd
+        on tq.id = tqd.questionnaire_id
+            join tbl_questionnaire_result tqr
+            on tqd.id = tqr.details_id
+            left join tbl_questionnaire_user tqu
+            on tqr.user_id = tqu.id
+    </sql>
+    <select id="getResultByUser" resultMap="resultMap">
+        <include refid="resultQuery"></include>
+        where tq.id=#{questionnaireId} and tqu.id = #{userId}
+    </select>
+    <select id="listResultByQuestionnaire" resultMap="resultMap">
+        <include refid="resultQuery"></include>
+        where tq.id=#{questionnaireId}
+        order by tq.id ,tqu.phone,tqd.details_order asc
+        limit ${(page-1)*limit },#{limit}
+    </select>
+    <select id="getCount" resultType="long">
+        select count(*)
+        from tbl_questionnaire tq
+                 join tbl_questionnaire_details tqd
+                      on tq.id = tqd.questionnaire_id
+                 join tbl_questionnaire_result tqr
+                      on tqd.id = tqr.details_id
+                 join tbl_questionnaire_user tqu
+                      on tqr.user_id = tqu.id
+        where tq.id=#{questionnaireId}
+    </select>
+    <select id="listUserByQuestionnaire" resultType="QuestionnaireUser">
+        select
+            distinct
+            tqu.id,
+            tq.id as questionnaireId,
+            tqu.name ,
+            tqu.phone
+        from tbl_questionnaire tq
+                 join tbl_questionnaire_details tqd
+                      on tq.id = tqd.questionnaire_id
+                 join tbl_questionnaire_result tqr
+                      on tqd.id = tqr.details_id
+                 join tbl_questionnaire_user tqu
+                      on tqr.user_id = tqu.id
+        where tq.id = ${questionnaireId}
+    </select>
+</mapper>
+
