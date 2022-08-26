@@ -1,6 +1,10 @@
 package com.test;
 
+import com.entity.Cat;
+import com.entity.Dog;
 import com.entity.Pet;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author :muxiaowen
@@ -14,8 +18,10 @@ public class MyTest2 {
         pet.setColor("黑");
         pet.introduce();
 
-        Class<?> clazz = Class.forName("com.entity.Cat");
-        Pet p = (Pet) clazz.newInstance();
+        //Class<?> clazz = Class.forName("com.entity.Cat");
+        //Pet p = (Pet) clazz.newInstance();
+        ApplicationContext ac = new ClassPathXmlApplicationContext("test.xml");
+        Pet p = ac.getBean(Cat.class);
         p.setName("小黑");
         p.setColor("白");
         p.introduce();

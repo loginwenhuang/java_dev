@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <bean id="driver" class="com.entity.Driver">
+           <property name="name" value="张三"/>
+           <property name="car" ref="car"/>
+       </bean>
+       <bean id="car" class="com.entity.CarB">
+           <property name="brand" value="宝马"/>
+           <property name="price" value="300000"/>
+           <property name="speed" value="75.0"/>
+       </bean>
+</beans>

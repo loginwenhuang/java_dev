@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--<meta charset="utf-8">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>后台主页</title>
+		<link rel="stylesheet" href="http://localhost:8080/ssm_layui_war_exploded/assets/layui/css/layui.css">
+
+	</head>
+	<style>
+
+	</style>
+	<body>
+	<div class="layui-collapse">
+	    <form class="layui-form" lay-filter="formTest">
+	        <div class="layui-colla-item">
+	            <h2 class="layui-colla-title">搜索<i class="layui-icon layui-colla-icon"></i></h2>
+	            <div class="layui-colla-content layui-show">
+	                <label class="layui-form-label" style="width: 30%">日期范围:</label>
+	                <div class="layui-input-inline">
+	                <input type="text" class="layui-input" name="cpdate" id="test10" placeholder=" 请选择时间 " style="width: 300px" lay-key="1">
+	            </div>
+	
+	                <div class="layui-input-inline">
+	                    <button type="button" class="layui-btn" lay-submit="" id="serachBtn" style="margin-left: 6px;">立即查询</button>
+	                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+	                </div>
+	            </div>
+	        </div>
+	    </form>
+	    <div class="layui-colla-item">
+	        <h2 class="layui-colla-title">手机销售排行<i class="layui-icon layui-colla-icon"></i></h2>
+	        <div class="layui-colla-content layui-show" style="width: 96%;height:70%;">
+	            <div id="box3" style="height: 100%; width: 100%; float: left; margin-left: 1%; user-select: none; position: relative;" _echarts_instance_="ec_1643371990250"><div style="position: relative; width: 1082px; height: 180px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 1082px; height: 180px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="1082" height="180"></canvas></div><div class=""></div></div>
+	        </div>
+	    </div>
+	    <div class="layui-colla-item">
+	        <h2 class="layui-colla-title">出入库总金额对比<i class="layui-icon layui-colla-icon"></i></h2>
+	        <div class="layui-colla-content layui-show" style="width: 96%;height:70%;">
+	        <div id="box1" style="width: 98%; height: 80%; user-select: none; position: relative;" _echarts_instance_="ec_1643371990251"><div style="position: relative; width: 1060px; height: 144px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 1060px; height: 144px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="1060" height="144"></canvas></div><div class=""></div></div>
+	        <div id="box4" style="width: 98%;height: 5%;text-align: center">
+	                <span style="font-size: 16px;">盈利状态：
+	                    <span id="box3_1" style="font-size: 16px;"><i class="layui-icon layui-icon-face-cry" style="font-size: 16px; color: red;">亏损状态，亏了<i class="layui-icon layui-icon-rmb" style="font-size: 20px; color: red;">7140775元</i></i></span>
+	                </span>
+	        </div>
+	        </div>
+	    </div>
+	    <div class="layui-colla-item">
+	        <h2 class="layui-colla-title">员工(出库)业绩排行<i class="layui-icon layui-colla-icon"></i></h2>
+	        <div class="layui-colla-content layui-show" style="width: 96%;height:70%;">
+	            <div id="box5" style="width: 98%; height: 85%; user-select: none; position: relative;" _echarts_instance_="ec_1643371990252"><div style="position: relative; width: 1060px; height: 153px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 1060px; height: 153px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="1060" height="153"></canvas></div><div class=""></div></div>
+	        </div>
+	    </div>
+	</div>
+	
+	<script src="http://localhost:8080/ssm_layui_war_exploded/assets/layui/layui.all.js"></script>
+	<script>
+	    Date.prototype.toLocaleStringTomorrow = function() {
+	        var dateTime=new Date();
+	        dateTime=dateTime.setDate(dateTime.getDate()+1);
+	        dateTime=new Date(dateTime);
+	        var y = dateTime.getFullYear();
+	        var m = dateTime.getMonth()+1;
+	        m = m<10?'0'+m:m;
+	        var d = dateTime.getDate();
+	        d = d<10?("0"+d):d;
+	        return y+"-"+m+"-"+d;
+	    }
+	
+	    layui.use(['laydate','layer','jquery','element'],function () {
+	        var element = layui.element;
+	        var layer = layui.layer;
+	        var $ = layui.$;
+	        var laydate = layui.laydate;
+	        var tomorrowTime = (new Date()).toLocaleStringTomorrow();
+	
+	        //日期选择器
+	        var value1;
+	        laydate.render({
+	            elem: '#test10'
+	            , type: 'datetime'
+	            , range: true
+	            , max: tomorrowTime
+	            //每次点击清空之前的日期选择
+	            , ready: function () {
+	                value1 = "";
+	            }
+	            , done: function (value) {
+	                value1 = value;
+	            }
+	        });
+	        //根据时间查询
+	        $("#serachBtn").on("click",function () {
+	            if (value1 == "" || value1 == undefined){
+	                value1 = "";
+	            }
+	            showChartOne();
+	            showChartTwo();
+	            showChartThree();
+	
+	
+	        });
+	
+	        $(function () {
+	            value1="";
+	            showChartOne();
+	            showChartTwo();
+	            showChartThree();
+	
+	        })
+	
+	        var show;
+	        function tip(a,str) {
+	            //在你掉接口拿数据去渲染chart图标的时候，渲染数据的时候判断一下
+	            if(a.length===0){
+	                show=str;
+	            }else {
+	                show='';
+	            }
+	        }
+	        //手机销售表
+	        function showChartOne(){
+	            var myChart = echarts.init(document.getElementById('box3'));
+	            // 显示标题，图例和空的坐标轴
+	            myChart.setOption({
+	                title: {
+	                    text: '手机销售排行'
+	                },
+	                tooltip: {},
+	                toolbox: {
+	                    feature: {
+	                        dataView: {show: true, readOnly: false},
+	                        magicType: {show: true, type: ['line', 'bar']},
+	                        saveAsImage: {show: true}
+	                    }
+	                },
+	                xAxis: {
+	                    data: [],
+	                    axisLabel: {
+	                        rotate: 35,
+	                    },
+	                },
+	                yAxis: {},
+	                series: [{
+	                    name: '数量',
+	                    type: 'bar',
+	                    data: []
+	                }]
+	            });
+	
+	            myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+	
+	            var names=[];    //类别数组（实际用来盛放X轴坐标值）
+	            var nums=[];    //销量数组（实际用来盛放Y坐标值）
+	
+	            $.ajax({
+	                type : "post",
+	                async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+	                url : "/huawei/chart/querySellPhoneCount",    //请求发送到TestServlet处
+	                data: {"valuedate":value1+""},
+	                success : function(result) {
+	                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+	                    tip(result,"您查询的时间范围内暂无手机销售数据");
+	                    if (result) {
+	                        for(var i=0;i<result.length;i++){
+	                            names.push(result[i].gname+"编号:"+result[i].g_id);    //挨个取出类别并填入类别数组
+	                        }
+	                        for(var i=0;i<result.length;i++){
+	                            //  nums.push(result[i].productionArrangement.number);    //挨个取出销量并填入销量数组daliy
+	                            nums.push(result[i].scount);
+	                        }
+	                        myChart.hideLoading();    //隐藏加载动画
+	                        myChart.setOption({        //加载数据图表
+	                            title:{
+	                                subtext:show
+	                            },
+	                            xAxis: {
+	                                data: names
+	                            },
+	                            series: [{
+	                                // 根据名字对应到相应的系列
+	                                name: names,
+	                                data: nums
+	                            }]
+	                        });
+	
+	                    }
+	                },
+	                error : function() {
+	                    //请求失败时执行该函数
+	                    layer.msg("手机图表请求数据失败!",{icon:5});
+	                    myChart.hideLoading();
+	                }
+	            });
+	        };
+	
+	        function tip1(a,str) {
+	            //在你掉接口拿数据去渲染chart图标的时候，渲染数据的时候判断一下
+	            if(a[0].value===null && a[1].value===null){
+	                show=str;
+	                $("#box3_1").html('<i class="layui-icon layui-icon-face-cry" style="font-size: 16px; color: red;">暂无数据</i>');
+	            }else {
+	                show='仅包含审核通过的订单';
+	            }
+	        }
+	
+	        //出入库金额表
+	        function showChartTwo() {
+	            var chartDom = document.getElementById('box1');
+	            var myChart = echarts.init(chartDom);
+	            var option;
+	
+	            option = {
+	                title: {
+	                    text: '出入库总金额对比',
+	                    subtext: '',
+	                    left: 'center'
+	                },
+	                tooltip: {
+	                    trigger: 'item'
+	                },
+	                toolbox: {
+	                    feature: {
+	                        dataView: {show: true, readOnly: false},
+	                        saveAsImage: {show: true}
+	                    }
+	                },
+	                legend: {
+	                    orient: 'vertical',
+	                    left: 'left',
+	                },
+	                series: [
+	                    {
+	                        name: '金额详情',
+	                        type: 'pie',
+	                        radius: '50%',
+	                        data: [],
+	                        emphasis: {
+	                            itemStyle: {
+	                                shadowBlur: 10,
+	                                shadowOffsetX: 0,
+	                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                            }
+	                        }
+	                    }
+	                ]
+	            };
+	
+	            option && myChart.setOption(option);
+	            /*            myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画*/
+	
+	            //console.log(value1);
+	            let sumPrice;
+	            $.ajax({
+	                type : "post",
+	                async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+	                url : "/huawei/chart/queryMoney",    //请求发送到TestServlet处
+	                data: {"valuedate":value1+""},
+	                success : function(result) {
+	                    sumPrice=parseFloat(result[1].value-result[0].value).toFixed(2);
+	                    if (sumPrice>0){
+	                        $("#box3_1").html('<i class="layui-icon layui-icon-face-smile" style="font-size: 16px; color: green;">盈利状态，赚了<i class="layui-icon layui-icon-rmb"  style="font-size: 20px; color: green;">'+sumPrice+'元</i></i>');
+	                    }else if (sumPrice==0){
+	                        $("#box3_1").html('<i class="layui-icon layui-icon-face-surprised" style="font-size: 16px; color: goldenrod;">成长状态，不赔不赚<i class="layui-icon layui-icon-rmb"  style="font-size: 20px; color: goldenrod;">'+sumPrice+'元</i></i>');
+	                    }else if (sumPrice<0){
+	                        $("#box3_1").html('<i class="layui-icon layui-icon-face-cry" style="font-size: 16px; color: red;">亏损状态，亏了<i class="layui-icon layui-icon-rmb"  style="font-size: 20px; color: red;">'+Math.abs(sumPrice)+'元</i></i>');
+	                    }
+	                    tip(result,"您查询的时间范围内暂无出入库数据");
+	                    myChart.setOption({        //填入数据
+	                        title:{
+	                            subtext:show
+	                        },
+	                        legend: {
+	                            data: result.name
+	                        },
+	                        series: [{
+	                            data: (function(){
+	                                var rs = [];
+	                                for(var res=0;res<result.length;res++){
+	                                    rs.push({
+	                                        name :result[res].name,
+	                                        value:result[res].value
+	                                    });
+	                                }
+	                                return rs;
+	                            })()
+	                        }]
+	                    });
+	                },
+	                error : function() {
+	                    //请求失败时执行该函数
+	                    layer.msg("出入库金额图表请求数据失败!",{icon:5});
+	                    myChart.hideLoading();
+	                }
+	            });
+	        };
+	        //出库表
+	        function showChartThree() {
+	            var myChart = echarts.init(document.getElementById('box5'));
+	            var show;
+	            // 显示标题，图例和空的坐标轴
+	            myChart.setOption({
+	                title: {
+	                    text: '员工(出库)业绩排行',
+	                    subtext: '仅包含审核通过的订单'
+	                },
+	                tooltip: {
+	                    trigger: 'axis',
+	                    axisPointer: {
+	                        type: 'shadow'
+	                    }
+	                },
+	                toolbox: {
+	                    feature: {
+	                        dataView: {show: true, readOnly: false},
+	                        magicType: {show: true, type: ['line', 'bar']},
+	                        saveAsImage: {show: true}
+	                    }
+	                },
+	                xAxis: {
+	                    type: 'category',
+	                    data: []
+	                },
+	                yAxis: {
+	                    type: 'value'
+	                },
+	                series: [{
+	                    data: [],
+	                    type: 'bar',
+	                    showBackground: true,
+	                    backgroundStyle: {
+	                        color: 'rgba(180, 180, 180, 0.2)'
+	                    }
+	                }]
+	            });
+	
+	            myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+	
+	            var names=[];    //类别数组（实际用来盛放X轴坐标值）
+	            var nums=[];    //销量数组（实际用来盛放Y坐标值）
+	
+	            $.ajax({
+	                type : "post",
+	                async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+	                url : "/huawei/chart/queryStaffMoney",    //请求发送到TestServlet处
+	                data: {"valuedate":value1+""},
+	                success : function(result) {
+	                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+	                    if (result) {
+	                        for(var i=0;i<result.length;i++){
+	                            names.push(result[i].pname);    //挨个取出类别并填入类别数组
+	                        }
+	                        for(var i=0;i<result.length;i++){
+	                            //  nums.push(result[i].productionArrangement.number);    //挨个取出销量并填入销量数组daliy
+	                            nums.push(result[i].ocount);
+	                        }
+	
+	                        //在你掉接口拿数据去渲染chart图标的时候，渲染数据的时候判断一下
+	                        if(names.length===0 && nums.length===0){
+	                            show='您查询的时间范围内暂无审核通过的出库数据';
+	                        }else {
+	                            show='仅包含审核通过的订单总金额';
+	                        }
+	
+	                        myChart.hideLoading();    //隐藏加载动画
+	                        myChart.setOption({        //加载数据图表
+	                            title:{
+	                                subtext:show
+	                            },
+	                            xAxis: {
+	                                data: names
+	                            },
+	                            series: [
+	                                {
+	                                    // 根据名字对应到相应的系列
+	                                    name: names,
+	                                    data: nums
+	                                },
+	                            ]
+	                        });
+	
+	                    }
+	                },
+	                error : function() {
+	                    //请求失败时执行该函数
+	                    layer.msg("员工出库业绩图表请求数据失败!",{icon:5});
+	                    myChart.hideLoading();
+	                }
+	            });
+	
+	        };
+
+	    })
+	</script>
+	
+	</body>
+</html>

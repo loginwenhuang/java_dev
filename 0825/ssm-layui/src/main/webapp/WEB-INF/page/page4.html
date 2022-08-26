@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--<meta charset="utf-8">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>后台主页</title>
+		<link rel="stylesheet" href="http://localhost:8080/ssm_layui_war_exploded/assets/layui/css/layui.css">
+		<script src="http://localhost:8080/ssm_layui_war_exploded/assets/layui/layui.all.js"></script>
+	</head>
+	<body>
+	
+	<form style="display: none;" class="layui-form" lay-filter="goodsForm" id="goodsForm">
+	    <input name="gid" style="display: none;">
+	    <div class="layui-collapse">
+	        <div class="layui-colla-item">
+	            <h2 class="layui-colla-title">图片<i class="layui-icon layui-colla-icon"></i></h2>
+	            <div class="layui-colla-content layui-show">
+	                <img id="showImg" src="" width="50px" height="50px">
+	            </div>
+	        </div>
+	    </div>
+	    <label class="layui-form-label">添加图片</label>
+	    <input class="layui-btn layui-btn-sm" type="file" id="img1" style="width:190px" name="file">
+	    <div class="layui-form-item">
+	        <label class="layui-form-label">商品名称</label>
+	        <div class="layui-input-inline">
+	            <input type="text" name="gname" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="seid3">
+	        <label class="layui-form-label">系列</label>
+	        <div class="layui-input-inline" id="seid4">
+	            <select name="seid" id="seid" lay-verify="required" lay-filter="Series">
+	                <option value="">--请选择系列--</option>
+	            <option value="1">HUAWEI Mate系列</option><option value="2">HUAWEI P系列</option><option value="3">HUAWEI nova系列</option><option value="4">HUAWEI 畅想系列</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择系列--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择系列--</dd><dd lay-value="1" class="">HUAWEI Mate系列</dd><dd lay-value="2" class="">HUAWEI P系列</dd><dd lay-value="3" class="">HUAWEI nova系列</dd><dd lay-value="4" class="">HUAWEI 畅想系列</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="mdid3">
+	        <label class="layui-form-label">型号</label>
+	        <div class="layui-input-inline">
+	            <select name="mdid" id="mdid" lay-verify="required" lay-filter="Model">
+	                <option value="">--请选择型号--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择型号--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择型号--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="moid3">
+	        <label class="layui-form-label">内存</label>
+	        <div class="layui-input-inline">
+	            <select name="moid" id="moid" lay-verify="required" lay-filter="Memory">
+	                <option value="">--请选择内存--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择内存--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择内存--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="hdid3">
+	        <label class="layui-form-label">处理器</label>
+	        <div class="layui-input-inline">
+	            <select name="hdid" id="hdid" lay-verify="required" lay-filter="Handler">
+	                <option value="">--请选择处理器--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择处理器--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择处理器--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="syid3">
+	        <label class="layui-form-label">系统</label>
+	        <div class="layui-input-inline">
+	            <select name="syid" id="syid" lay-verify="required" lay-filter="System">
+	                <option value="">--请选择系统--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择系统--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择系统--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="srid3">
+	        <label class="layui-form-label">屏幕尺寸</label>
+	        <div class="layui-input-inline">
+	            <select name="srid" id="srid" lay-verify="required" lay-filter="Screen">
+	                <option value="">--请选择屏幕尺寸--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择屏幕尺寸--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择屏幕尺寸--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item" id="coid3">
+	        <label class="layui-form-label">颜色</label>
+	        <div class="layui-input-inline">
+	            <select name="coid" id="coid" lay-verify="required" lay-filter="Color">
+	                <option value="">--请选择颜色--</option>
+	            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择颜色--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择颜色--</dd></dl></div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <div class="layui-inline">
+	            <label class="layui-form-label">价格</label>
+	            <div class="layui-input-inline">
+	                <input type="text" class="layui-input" name="price" id="price">
+	            </div>
+	        </div>
+	    </div>
+	    <div class="layui-form-item">
+	        <div class="layui-input-inline">
+	            <button class="layui-btn" lay-submit="" lay-filter="formDemo" style="margin-left: 110px">立即提交</button>
+	            <button type="reset" class="layui-btn layui-btn-primary" style="margin: -38px 0 0 210px">重置</button>
+	        </div>
+	    </div>
+	</form>
+	
+	<div class="layui-collapse">
+	    <div class="layui-colla-item">
+	        <h2 class="layui-colla-title">搜索<i class="layui-icon layui-colla-icon"></i></h2>
+	        <div class="layui-colla-content layui-show">
+	            <div class="demoTable layui-form">
+	                <div class="layui-inline">
+	                    <input class="layui-input" placeholder="全局查询" name="gname" id="gname" autocomplete="off">
+	                </div>
+	                <div class="layui-input-inline">
+	                    <select name="seid" id="seid2" lay-verify="required" lay-filter="Series2">
+	                        <option value="">--请选择系列--</option>
+	                    <option value="1">HUAWEI Mate系列</option><option value="2">HUAWEI P系列</option><option value="3">HUAWEI nova系列</option><option value="4">HUAWEI 畅想系列</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="--请选择系列--" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">--请选择系列--</dd><dd lay-value="1" class="">HUAWEI Mate系列</dd><dd lay-value="2" class="">HUAWEI P系列</dd><dd lay-value="3" class="">HUAWEI nova系列</dd><dd lay-value="4" class="">HUAWEI 畅想系列</dd></dl></div>
+	                </div>
+	                <div class="layui-inline">
+	                    <input type="text" class="layui-input" name="testtime" id="test10" placeholder="新增日期时间范围" lay-key="1">
+	                </div>
+	                <button class="layui-btn" id="staffSearch" data-type="reload">搜索</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<table id="demo" lay-filter="test" style="margin-top: -10px;"></table><div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1" lay-id="test" style=" "><div class="layui-table-tool"><div class="layui-table-tool-temp"> <div class="layui-btn-container"> <button class="layui-btn layui-btn-sm" lay-event="add">新增</button> <button class="layui-btn layui-btn-sm" lay-event="refresh">刷新</button> </div> </div><div class="layui-table-tool-self"><div class="layui-inline" title="筛选列" lay-event="LAYTABLE_COLS"><i class="layui-icon layui-icon-cols"></i></div><div class="layui-inline" title="导出" lay-event="LAYTABLE_EXPORT"><i class="layui-icon layui-icon-export"></i></div><div class="layui-inline" title="打印" lay-event="LAYTABLE_PRINT"><i class="layui-icon layui-icon-print"></i></div></div></div><div class="layui-table-box"><div class="layui-table-header"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><thead><tr><th data-field="gid" data-key="1-0-0" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-0" align="center"><span>商品编号</span><span class="layui-table-sort layui-inline" lay-sort="asc"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1"><span>手机名称</span></div></th><th data-field="gimg" data-key="1-0-2" class=""><div class="layui-table-cell laytable-cell-1-0-2"><span>商品图片</span></div></th><th data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3"><span>系列id</span></div></th><th data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4"><span>型号id</span></div></th><th data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5"><span>内存id</span></div></th><th data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6"><span>处理器id</span></div></th><th data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7"><span>系统id</span></div></th><th data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8"><span>尺寸id</span></div></th><th data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9"><span>颜色id</span></div></th><th data-field="series.setype" data-key="1-0-10" class=""><div class="layui-table-cell laytable-cell-1-0-10" align="center"><span>系列名称</span></div></th><th data-field="model.mdname" data-key="1-0-11" class=""><div class="layui-table-cell laytable-cell-1-0-11" align="center"><span>型号名称</span></div></th><th data-field="memory.mosize" data-key="1-0-12" class=""><div class="layui-table-cell laytable-cell-1-0-12" align="center"><span>内存大小</span></div></th><th data-field="handler.hdtype" data-key="1-0-13" class=""><div class="layui-table-cell laytable-cell-1-0-13" align="center"><span>处理器类型</span></div></th><th data-field="system.sytype" data-key="1-0-14" class=""><div class="layui-table-cell laytable-cell-1-0-14" align="center"><span>系统类型</span></div></th><th data-field="screen.srtype" data-key="1-0-15" class=""><div class="layui-table-cell laytable-cell-1-0-15" align="center"><span>尺寸类型</span></div></th><th data-field="color.cotype" data-key="1-0-16" class=""><div class="layui-table-cell laytable-cell-1-0-16" align="center"><span>颜色类型</span></div></th><th data-field="gentry" data-key="1-0-17" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-17"><span>新增日期</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="bid" data-key="1-0-18" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-18"><span>进价</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="price" data-key="1-0-19" class=" layui-unselect"><div class="layui-table-cell laytable-cell-1-0-19"><span>售价</span><span class="layui-table-sort layui-inline"><i class="layui-edge layui-table-sort-asc" title="升序"></i><i class="layui-edge layui-table-sort-desc" title="降序"></i></span></div></th><th data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20"><span>库存</span></div></th><th data-field="21" data-key="1-0-21" class=" layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"><span>操作</span></div></th></tr></thead></table></div><div class="layui-table-body layui-table-main"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><tbody><tr data-index="0"><td data-field="gid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">19</div></td><td data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1">HUAWEI Mate Pro+</div></td><td data-field="gimg" data-key="1-0-2" data-content="https://wszcom.oss-cn-beijing.aliyuncs.com/e1cb9c63-813b-4323-ab13-97b2d750ad6f.png" class=""><div class="layui-table-cell laytable-cell-1-0-2"><img src="https://wszcom.oss-cn-beijing.aliyuncs.com/e1cb9c63-813b-4323-ab13-97b2d750ad6f.png" style="width: 80px;height: 50px"></div></td><td data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3">1</div></td><td data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4">2</div></td><td data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5">5</div></td><td data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6">5</div></td><td data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7">5</div></td><td data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8">5</div></td><td data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9">34</div></td><td data-field="series.setype" data-key="1-0-10" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-10">HUAWEI Mate系列</div></td><td data-field="model.mdname" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">Pro+</div></td><td data-field="memory.mosize" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">8GB+256GB</div></td><td data-field="handler.hdtype" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">麒麟9000</div></td><td data-field="system.sytype" data-key="1-0-14" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">EMUI 11.0</div></td><td data-field="screen.srtype" data-key="1-0-15" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-15">6.72英寸</div></td><td data-field="color.cotype" data-key="1-0-16" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-16">陶瓷黑</div></td><td data-field="gentry" data-key="1-0-17" class=""><div class="layui-table-cell laytable-cell-1-0-17">2021-07-16 19:12:50</div></td><td data-field="bid" data-key="1-0-18" class=""><div class="layui-table-cell laytable-cell-1-0-18">8100</div></td><td data-field="price" data-key="1-0-19" class=""><div class="layui-table-cell laytable-cell-1-0-19">9400</div></td><td data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20">204</div></td><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="1"><td data-field="gid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">25</div></td><td data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1">HUAWEI P40</div></td><td data-field="gimg" data-key="1-0-2" data-content="https://wszcom.oss-cn-beijing.aliyuncs.com/a32473ba-cc34-4779-bcf8-d6fd160c3feb.png" class=""><div class="layui-table-cell laytable-cell-1-0-2"><img src="https://wszcom.oss-cn-beijing.aliyuncs.com/a32473ba-cc34-4779-bcf8-d6fd160c3feb.png" style="width: 80px;height: 50px"></div></td><td data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3">2</div></td><td data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4">3</div></td><td data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5">6</div></td><td data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6">6</div></td><td data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7">6</div></td><td data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8">6</div></td><td data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9">9</div></td><td data-field="series.setype" data-key="1-0-10" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-10">HUAWEI P系列</div></td><td data-field="model.mdname" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">null</div></td><td data-field="memory.mosize" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">6GB+128GB</div></td><td data-field="handler.hdtype" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">麒麟990</div></td><td data-field="system.sytype" data-key="1-0-14" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">EMUI 10.1</div></td><td data-field="screen.srtype" data-key="1-0-15" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-15">6.1英寸</div></td><td data-field="color.cotype" data-key="1-0-16" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-16">深蓝色</div></td><td data-field="gentry" data-key="1-0-17" class=""><div class="layui-table-cell laytable-cell-1-0-17">2021-07-16 19:14:41</div></td><td data-field="bid" data-key="1-0-18" class=""><div class="layui-table-cell laytable-cell-1-0-18">4550</div></td><td data-field="price" data-key="1-0-19" class=""><div class="layui-table-cell laytable-cell-1-0-19">5499</div></td><td data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20">115</div></td><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="2"><td data-field="gid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">30</div></td><td data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1">HUAWEI P40 Pro</div></td><td data-field="gimg" data-key="1-0-2" data-content="https://wszcom.oss-cn-beijing.aliyuncs.com/b81dbf7e-93cb-4593-861c-999daa6cc9de.png" class=""><div class="layui-table-cell laytable-cell-1-0-2"><img src="https://wszcom.oss-cn-beijing.aliyuncs.com/b81dbf7e-93cb-4593-861c-999daa6cc9de.png" style="width: 80px;height: 50px"></div></td><td data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3">2</div></td><td data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4">4</div></td><td data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5">9</div></td><td data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6">6</div></td><td data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7">6</div></td><td data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8">6</div></td><td data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9">9</div></td><td data-field="series.setype" data-key="1-0-10" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-10">HUAWEI P系列</div></td><td data-field="model.mdname" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">Pro</div></td><td data-field="memory.mosize" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">8GB+128GB</div></td><td data-field="handler.hdtype" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">麒麟990</div></td><td data-field="system.sytype" data-key="1-0-14" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">EMUI 10.1</div></td><td data-field="screen.srtype" data-key="1-0-15" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-15">6.1英寸</div></td><td data-field="color.cotype" data-key="1-0-16" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-16">深蓝色</div></td><td data-field="gentry" data-key="1-0-17" class=""><div class="layui-table-cell laytable-cell-1-0-17">2021-07-16 19:15:18</div></td><td data-field="bid" data-key="1-0-18" class=""><div class="layui-table-cell laytable-cell-1-0-18">5300</div></td><td data-field="price" data-key="1-0-19" class=""><div class="layui-table-cell laytable-cell-1-0-19">5900</div></td><td data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20">1100</div></td><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="3"><td data-field="gid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">41</div></td><td data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1">HUAWEI nova Pro</div></td><td data-field="gimg" data-key="1-0-2" data-content="https://wszcom.oss-cn-beijing.aliyuncs.com/b6005374-a785-4d49-8470-0d3b2d38a9b4.png" class=""><div class="layui-table-cell laytable-cell-1-0-2"><img src="https://wszcom.oss-cn-beijing.aliyuncs.com/b6005374-a785-4d49-8470-0d3b2d38a9b4.png" style="width: 80px;height: 50px"></div></td><td data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3">3</div></td><td data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4">7</div></td><td data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5">17</div></td><td data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6">17</div></td><td data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7">17</div></td><td data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8">17</div></td><td data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9">75</div></td><td data-field="series.setype" data-key="1-0-10" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-10">HUAWEI nova系列</div></td><td data-field="model.mdname" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">Pro</div></td><td data-field="memory.mosize" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">8GB+256GB</div></td><td data-field="handler.hdtype" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">麒麟985</div></td><td data-field="system.sytype" data-key="1-0-14" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">EMUI 11.0</div></td><td data-field="screen.srtype" data-key="1-0-15" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-15">6.72英寸</div></td><td data-field="color.cotype" data-key="1-0-16" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-16">8号色</div></td><td data-field="gentry" data-key="1-0-17" class=""><div class="layui-table-cell laytable-cell-1-0-17">2021-07-19 17:08:06</div></td><td data-field="bid" data-key="1-0-18" class=""><div class="layui-table-cell laytable-cell-1-0-18">6575</div></td><td data-field="price" data-key="1-0-19" class=""><div class="layui-table-cell laytable-cell-1-0-19">7500</div></td><td data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20">211</div></td><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="4"><td data-field="gid" data-key="1-0-0" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-0">42</div></td><td data-field="gname" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1">HUAWEI çæ³</div></td><td data-field="gimg" data-key="1-0-2" data-content="https://wszcom.oss-cn-beijing.aliyuncs.com/386de75a-6eb7-4f1a-b7dd-2309482d2062.png" class=""><div class="layui-table-cell laytable-cell-1-0-2"><img src="https://wszcom.oss-cn-beijing.aliyuncs.com/386de75a-6eb7-4f1a-b7dd-2309482d2062.png" style="width: 80px;height: 50px"></div></td><td data-field="seid" data-key="1-0-3" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-3">4</div></td><td data-field="mdid" data-key="1-0-4" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-4">8</div></td><td data-field="moid" data-key="1-0-5" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-5">18</div></td><td data-field="hdid" data-key="1-0-6" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-6">18</div></td><td data-field="syid" data-key="1-0-7" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-7">18</div></td><td data-field="srid" data-key="1-0-8" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-8">18</div></td><td data-field="coid" data-key="1-0-9" class="layui-hide"><div class="layui-table-cell laytable-cell-1-0-9">19</div></td><td data-field="series.setype" data-key="1-0-10" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-10">HUAWEI 畅想系列</div></td><td data-field="model.mdname" data-key="1-0-11" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-11">null</div></td><td data-field="memory.mosize" data-key="1-0-12" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-12">8GB+128GB</div></td><td data-field="handler.hdtype" data-key="1-0-13" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-13">麒麟710</div></td><td data-field="system.sytype" data-key="1-0-14" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-14">EMUI 10.1</div></td><td data-field="screen.srtype" data-key="1-0-15" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-15">6.67英寸</div></td><td data-field="color.cotype" data-key="1-0-16" data-content="" class="" align="center"><div class="layui-table-cell laytable-cell-1-0-16">晨曦金</div></td><td data-field="gentry" data-key="1-0-17" class=""><div class="layui-table-cell laytable-cell-1-0-17">2021-07-22 06:45:13</div></td><td data-field="bid" data-key="1-0-18" class=""><div class="layui-table-cell laytable-cell-1-0-18">4000</div></td><td data-field="price" data-key="1-0-19" class=""><div class="layui-table-cell laytable-cell-1-0-19">5555</div></td><td data-field="stock" data-key="1-0-20" class=""><div class="layui-table-cell laytable-cell-1-0-20">100</div></td><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr></tbody></table></div><div class="layui-table-fixed layui-table-fixed-r" style="right: -1px;"><div class="layui-table-header"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><thead><tr><th data-field="21" data-key="1-0-21" class=" layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"><span>操作</span></div></th></tr></thead></table><div class="layui-table-mend"></div></div><div class="layui-table-body" style="height: 195px;"><table class="layui-table" lay-even="" cellspacing="0" cellpadding="0" border="0"><tbody><tr data-index="0"><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="1"><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="2"><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="3"><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr><tr data-index="4"><td data-field="21" data-key="1-0-21" data-off="true" class="layui-table-col-special"><div class="layui-table-cell laytable-cell-1-0-21"> <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a> </div></td></tr></tbody></table></div></div></div><div class="layui-table-page"><div id="layui-table-page1"><div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1"><a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0"><i class="layui-icon"></i></a><span class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>1</em></span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" class="layui-laypage-next" data-page="2"><i class="layui-icon"></i></a><span class="layui-laypage-skip">到第<input type="text" min="1" value="1" class="layui-input">页<button type="button" class="layui-laypage-btn">确定</button></span><span class="layui-laypage-count">共 9 条</span><span class="layui-laypage-limits"><select lay-ignore=""><option value="5" selected="">5 条/页</option><option value="10">10 条/页</option><option value="15">15 条/页</option><option value="20">20 条/页</option></select></span></div></div></div><style>.laytable-cell-1-0-0{  }.laytable-cell-1-0-1{  }.laytable-cell-1-0-2{  }.laytable-cell-1-0-3{  }.laytable-cell-1-0-4{  }.laytable-cell-1-0-5{  }.laytable-cell-1-0-6{  }.laytable-cell-1-0-7{  }.laytable-cell-1-0-8{  }.laytable-cell-1-0-9{  }.laytable-cell-1-0-10{  }.laytable-cell-1-0-11{  }.laytable-cell-1-0-12{  }.laytable-cell-1-0-13{  }.laytable-cell-1-0-14{  }.laytable-cell-1-0-15{  }.laytable-cell-1-0-16{  }.laytable-cell-1-0-17{  }.laytable-cell-1-0-18{  }.laytable-cell-1-0-19{  }.laytable-cell-1-0-20{  }.laytable-cell-1-0-21{ width: 200px; }</style></div>
+	
+	<script type="text/html" id="toolbarDemo">
+	    <div class="layui-btn-container">
+	        <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+	        <button class="layui-btn layui-btn-sm" lay-event="refresh">刷新</button>
+	    </div>
+	</script>
+	
+	<script type="text/html" id="barDemo">
+	    <a class="layui-btn layui-btn-xs" lay-event="updateStaff">修改商品信息</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delGoods">删除</a>
+	</script>
+	<script>
+	    //js方式获取本地时间+1天
+	    Date.prototype.toLocaleStringTomorrow = function () {
+	        var dateTime = new Date();
+	        dateTime = dateTime.setDate(dateTime.getDate() + 1);
+	        dateTime = new Date(dateTime);
+	        var y = dateTime.getFullYear();
+	        var m = dateTime.getMonth() + 1;
+	        m = m < 10 ? '0' + m : m;
+	        var d = dateTime.getDate();
+	        d = d < 10 ? ("0" + d) : d;
+	        return y + "-" + m + "-" + d;
+	    }
+	
+	
+	    layui.use(['table', 'form', 'jquery', 'layer', 'laydate', 'element'], function () {
+	        var table = layui.table;
+	        var form = layui.form;
+	        var $ = layui.jquery;
+	        var layer = layui.layer;
+	        var laydate = layui.laydate;
+	        var element = layui.element;
+	        var tableContent = new Array();
+	        var tomorrowTime = (new Date()).toLocaleStringTomorrow();
+	
+	        //日期时间范围
+	        $("#test10").focus(function () {
+	            $("#test10").val("");
+	        })
+	        laydate.render({
+	            elem: '#test10'
+	            , type: 'datetime'
+	            , range: true
+	            , max: tomorrowTime
+	        });
+	        //填充所有的系列
+	        $.ajax({
+	            url: "/huawei/phone/getAllSeries",
+	            type: "POST",
+	            dataType: "json",
+	            success: function (seid) {
+	                //第一个这是新增的下拉框
+	                //第二个这是搜索的下拉框
+	                $.each(seid.data, function (i, obj) {
+	                    $("#seid").append(
+	                        $("<option>").attr("value", obj["seid"]).text(obj["setype"])
+	                    )
+	                    $("#seid2").append(
+	                        $("<option>").attr("value", obj["seid"]).text(obj["setype"])
+	                    )
+	                })
+	                //执行表单的更新渲染方法
+	                form.render('select');
+	            }
+	        })
+	        //型号联动
+	        form.on('select(Series)', function (data) {
+	            $.ajax({
+	                url: "/huawei/phone/getAllModel",
+	                type: "POST",
+	                data: $("#seid"),
+	                dataType: "json",
+	                success: function (Mdid) {
+	                    $("#mdid").find("option").remove();
+	                    $.each(Mdid.data, function (i, obj) {
+	                        $("#mdid").append(
+	                            $("<option>").attr("value", obj["mdid"]).text(obj["mdname"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //内存联动
+	        form.on('select(Model)', function (data) {
+	            $.ajax({
+	                url: "/huawei/phone/getAllMemory",
+	                type: "POST",
+	                data: $("#mdid"),
+	                dataType: "json",
+	                success: function (Moid) {
+	                    $("#moid").find("option").remove();
+	                    $.each(Moid.data, function (i, obj) {
+	                        $("#moid").append(
+	                            $("<option>").attr("value", obj["moid"]).text(obj["mosize"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //处理器联动
+	        form.on('select(Memory)', function (data) {
+	            $.ajax({
+	                url: "/huawei/phone/getAllHandler",
+	                type: "POST",
+	                data: $("#moid"),
+	                dataType: "json",
+	                success: function (Hdid) {
+	                    $("#hdid").find("option").remove();
+	                    $.each(Hdid.data, function (i, obj) {
+	                        $("#hdid").append(
+	                            $("<option>").attr("value", obj["hdid"]).text(obj["hdtype"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //系统联动
+	        form.on('select(Handler)', function (data) {
+	            $.ajax({
+	                url: "/huawei/phone/getAllSystem",
+	                type: "POST",
+	                data: $("#hdid"),
+	                dataType: "json",
+	                success: function (Syid) {
+	                    $("#syid").find("option").remove();
+	                    $.each(Syid.data, function (i, obj) {
+	                        $("#syid").append(
+	                            $("<option>").attr("value", obj["syid"]).text(obj["sytype"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //屏幕尺寸联动
+	        form.on('select(System)', function (data) {
+	            var a = $("#syid");
+	            $.ajax({
+	                url: "/huawei/phone/getAllScreen",
+	                type: "POST",
+	                data: a,
+	                dataType: "json",
+	                success: function (Srid) {
+	                    $("#srid").find("option").remove();
+	                    $.each(Srid.data, function (i, obj) {
+	                        $("#srid").append(
+	                            $("<option>").attr("value", obj["srid"]).text(obj["srtype"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //颜色联动
+	        form.on('select(Screen)', function (data) {
+	            var a = $("#srid");
+	            $.ajax({
+	                url: "/huawei/phone/getAllColor",
+	                type: "POST",
+	                data: a,
+	                dataType: "json",
+	                success: function (Coid) {
+	                    $("#coid").find("option").remove();
+	                    $.each(Coid.data, function (i, obj) {
+	                        $("#coid").append(
+	                            $("<option>").attr("value", obj["coid"]).text(obj["cotype"])
+	                        )
+	                    })
+	                    //执行表单的更新渲染方法
+	                    form.render('select');
+	                }
+	            })
+	        });
+	        //搜索时，执行表格的重载事件
+	        $("#staffSearch").click(function () {
+	            table.reload('test', {
+	                page: {
+	                    curr: 1 //重新从第 1 页开始
+	                },
+	                where: { //设定异步数据接口的额外参数，任意设
+	                    gname: $("#gname").val(),
+	                    seid: $("#seid2").val(),
+	                    testtime: $("#test10").val()
+	                }
+	            }); //只重载数据
+	        })
+	        form.on('submit(formDemo)', function (data) {
+	            //向后台发送请求
+	            var formData = new FormData(document.getElementById("goodsForm"));
+	            $.ajax({
+	                url: '/huawei/goods/addOrUpdGoods',
+	                type: "POST",
+	                data: formData,
+	                //因为layui 在表单提交时 有时候会自动拦截我们的异步请求
+	                //所以此处改位同步请求
+	                async: false,
+	                contentType:false,
+	                processData:false,
+	                dataType: "json",
+	                success: function (result) {
+	
+	                    if (result.code == 1) {
+	                        //重载表格
+	                        layer.closeAll();
+	                        layer.msg(result.msg, {icon: 1});
+	                        table.reload("test");
+	
+	                    } else {
+	                        layer.msg(result.msg, {icon: 5});
+	                    }
+	                }
+	            })
+	            return false;
+	        });
+	
+	        //加载表格的实例
+	        table.render({
+	            id: "test",
+	            //elem element 元素---》表格的容器
+	            elem: '#demo'//table标签的id属性值
+	            //,height: 312//整个表格的高度
+	            , cellMinWidth: 80
+	            , url: '/huawei/goods/getAllGoods' //数据接口
+	            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+	            , cols: [[ //表头
+	                {field: 'gid', title: '商品编号', sort: true, align: 'center'}
+	                , {field: 'gname', title: '手机名称'}
+	
+	                /*, {
+	                    field: 'gimg',
+	                    id: 'mainimg',
+	                    title: '实物图',
+	                    width: 80,
+	                    unresize: true,
+	                    align: 'center',
+	                    templet: function (u) {
+	                        var a = u.gimg
+	                        return "<Img src='" + a + "' style='width: 50px;height: 50px'>"
+	                    }
+	                }*/
+	                ,{field:'gimg', title:'商品图片',height:50,templet:function (data) {
+	                        var a=data.gimg
+	                        return "<Img  src='"+a+"' style='width: 80px;height: 50px'>"
+	                    }}
+	                , {field: 'seid', title: '系列id', hide: true}
+	                , {field: 'mdid', title: '型号id', hide: true}
+	                , {field: 'moid', title: '内存id', hide: true}
+	                , {field: 'hdid', title: '处理器id', hide: true}
+	                , {field: 'syid', title: '系统id', hide: true}
+	                , {field: 'srid', title: '尺寸id', hide: true}
+	                , {field: 'coid', title: '颜色id', hide: true}
+	                , {
+	                    field: 'series.setype', title: '系列名称', align: 'center', templet: function (data) {
+	                        return data.series.setype;
+	                    }
+	                }
+	                , {
+	                    field: 'model.mdname', title: '型号名称', align: 'center', templet: function (data) {
+	                        return data.model.mdname;
+	                    }
+	                }
+	                , {
+	                    field: 'memory.mosize', title: '内存大小', align: 'center', templet: function (data) {
+	                        return data.memory.mosize;
+	                    }
+	                }
+	                , {
+	                    field: 'handler.hdtype', title: '处理器类型', align: 'center', templet: function (data) {
+	                        return data.handler.hdtype;
+	                    }
+	                }
+	                , {
+	                    field: 'system.sytype', title: '系统类型', align: 'center', templet: function (data) {
+	                        return data.system.sytype;
+	                    }
+	                }
+	                , {
+	                    field: 'screen.srtype', title: '尺寸类型', align: 'center', templet: function (data) {
+	                        return data.screen.srtype;
+	                    }
+	                }
+	                , {
+	                    field: 'color.cotype', title: '颜色类型', align: 'center', templet: function (data) {
+	                        return data.color.cotype;
+	                    }
+	                }
+	                , {field: 'gentry', title: '新增日期', sort: true}
+	                , {field: 'bid', title: '进价', sort: true}
+	                , {field: 'price', title: '售价', sort: true}
+	                , {field: 'stock', title: '库存'}
+	                , {fixed: 'right', title: '操作', width: 200, toolbar: '#barDemo'}
+	            ]],
+	            done: function(res, curr, count){
+	                //如果是异步请求数据方式，res即为你接口返回的信息。
+	                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+	                console.log(res);
+	                for (let i = 0; i < res.data.length; i++) {
+	                    tableContent.push(res.data[i])
+	                }
+	                console.log(tableContent)
+	                for (let i = 0; i < tableContent.length; i++) {
+	                    console.log(tableContent[i].bid)
+	                }
+	                //得到当前页码
+	                console.log(curr);
+	
+	                //得到数据总量
+	                console.log(count);
+	            },
+	            initSort: {
+	                field: 'gid' //排序字段，对应 cols 设定的各字段名
+	                , type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+	            },
+	            even: true,
+	            page: true,//开启分页
+	            limit: 5,//默认每页显示的条数
+	            limits: [5, 10, 15,20]//自定义分页条数的选择
+	        });
+	        //头工具栏事件
+	        //toolbar()括号中的参数就是  table容器中 lay-filter属性的值
+	        table.on('toolbar(test)', function (obj) {
+	            var checkStatus = table.checkStatus(obj.config.id);
+	            switch (obj.event) {
+	                /**
+	                 * case后边的具体字符串跟 toolbarDemo中的 lay-event属性值一样
+	                 */
+	                case 'add':
+	                    $("#seid3").css("display", 'block')
+	                    $("#hdid3").css("display", 'block')
+	                    $("#syid3").css("display", 'block')
+	                    $("#moid3").css("display", 'block')
+	                    $("#mdid3").css("display", 'block')
+	                    $("#srid3").css("display", 'block')
+	                    $("#coid3").css("display", 'block')
+	                    //先执行清空表单的方法，再打开弹出框
+	                    $("#goodsForm")[0].reset();
+	                    $("#showImg").empty()
+	                    layer.open({
+	                        type: 1,
+	                        title: '新增商品信息',
+	                        content: $("#goodsForm"), //这里content是一个普通的String
+	                        area: ['400px', '640px'],
+	                        offset: 't',
+	                        end: function () {
+	                            window.location.reload();
+	                        }
+	                    });
+	
+	                    break;
+	                case 'refresh':
+	
+	                    table.reload('test', {
+	                        page: {
+	                            curr: 1 //重新从第 1 页开始
+	                        }
+	                    }); //只重载数据
+	                    break;
+	            }
+	            ;
+	        });
+	        img1.onchange=function () {
+	            /**
+	             * 创建二进制流
+	             */
+	            let reader = new FileReader();
+	            /**
+	             *二进制流读取图片
+	             */
+	            reader.readAsDataURL(img1.files[0]);
+	            /**
+	             * 把图片显现出来
+	             */
+	            reader.onload=function () {
+	                /*$('#showImg').append($('<img width="50px"height="50px">').prop('src',reader.result))*/
+	                /*$("#showImg").append(
+	                    $("<img>").prop('src', reader.result).prop('width',100).prop('height',50)
+	                );*/
+	                showImg.src=reader.result;
+	            }
+	        }
+	        //监听主图删除按钮
+	        form.on('submit(mainimg)', function (obj) {
+	            $.ajax({
+	                url: '/huawei/book/delmainimg',
+	                type: 'post',
+	                data: {"mainimg": $(this).prev().prev().attr("src")},
+	                success: function (obj) {
+	                    if (obj > 0) {
+	                        layer.msg('删除成功', {icon: 1});
+	                        //重载到指定页面
+	                        table.reload('test', {
+	                            page: {
+	                                curr: $(".layui-laypage-skip").find("input").val() //指定页面
+	                            }
+	                        });
+	                    } else {
+	                        layer.msg('删除失败', {icon: 5});
+	                    }
+	                }
+	            })
+	            $(this).prev().prev().remove()//清除图片
+	            $(this).prev().remove()//清除换行
+	            $(this).remove()//清除按钮
+	            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+	        });
+	        //监听行工具事件
+	        ////tool()括号中的参数就是  table容器中 lay-filter属性的值
+	        table.on('tool(test)', function (obj) {
+	            //取出当前点击的行的数据
+	            var data = obj.data;
+	            if (obj.event === 'delGoods') {
+	                layer.confirm("确定删除该商品吗？", function (index) {
+	                    $.ajax({
+	                        type: 'get'
+	                        , url: '/huawei/goods/delGoods'
+	                        , data: {"gid": data.gid}
+	                        , dataType: 'json'
+	                        , success: function (result) {
+	                            if (result.code == 1) {
+	                                layer.msg(result.msg, {icon: 5});
+	                                table.reload("test");
+	                            }
+	                            layer.msg(result.msg, {icon: 1});
+	                        }
+	                    })
+	                    layer.close(index);
+	                })
+	            } else if (obj.event === 'updateStaff') {
+	                $("#seid3").css("display", 'none')
+	                $("#hdid3").css("display", 'none')
+	                $("#syid3").css("display", 'none')
+	                $("#moid3").css("display", 'none')
+	                $("#mdid3").css("display", 'none')
+	                $("#srid3").css("display", 'none')
+	                $("#coid3").css("display", 'none')
+	                //先执行清空表单的方法，再打开弹出框
+	                $("#goodsForm")[0].reset();
+	                layer.open({
+	                    type: 1,
+	                    title: '修改商品信息',
+	                    content: $("#goodsForm"), //这里content是一个普通的String
+	                    area: ['400px', '440px'],
+	                    offset: 't',
+	                });
+	                //填充表单
+	                form.val('goodsForm', data);
+	            }
+	        });
+	    });
+	</script>
+	
+	
+	</body>
+</html>
